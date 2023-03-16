@@ -1,0 +1,56 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background: rgb(255, 255, 255);
+}
+.container {
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 100px 0;
+}
+
+.title {
+	text-align: center;
+	padding: 20px;
+}
+.regform {
+	background-color: rgba(255, 255, 255, 0.13);
+	backdrop-filter: blur(10px);
+	box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+	border: 1px solid black;
+	border-radius: 25px;
+	padding: 20px;
+}
+
+#dreg {
+	display: flex;
+	max-width: 500px;
+	flex-direction: column;
+}
+
+#dreg label,
+input {
+	padding: 10px 0;
+}
+
+.regname {
+	display: flex;
+	justify-content: space-between;
+}
+
+.regname input,
+.regaddress input {
+	width: 48%;
+}
+
+.regaddress {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}

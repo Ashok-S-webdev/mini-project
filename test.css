@@ -1,0 +1,152 @@
+/* * {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	font-family: Arial, sans-serif;
+}
+
+header {
+	background-color: #333;
+	color: #fff;
+	display: flex;
+	align-items: center;
+	padding: 10px;
+}
+
+.logo {
+	flex: 1;
+}
+
+nav {
+	flex: 2;
+}
+
+nav ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: flex-end;
+}
+
+nav li {
+	margin: 0 10px;
+}
+
+nav a {
+	color: #fff;
+	text-decoration: none;
+}
+
+nav a:hover {
+	text-decoration: underline;
+}
+
+main {
+	max-width: 1200px;
+	margin: auto;
+	padding: 20px;
+}
+
+.hero {
+	background-image: url("https://via.placeholder.com/1200x500");
+	background-size: cover;
+	background-position: center;
+	padding: 50px;
+	color: #fff;
+}
+
+.hero-text {
+	max-width: 600px;
+	margin: auto;
+	text-align: center;
+}
+
+.hero-text h2 {
+	font-size: 3rem;
+	margin-bottom: 20px;
+}
+
+.hero-text p {
+	font-size: 1.5rem;
+	margin-bottom: 30px;
+}
+
+.btn {
+	display: inline-block;
+	padding: 10px 20px;
+	background-color: #fff;
+	color: #333;
+	text-decoration: none;
+	font-size: 1.2rem;
+	border-radius: 5px;
+}
+
+.btn:hover {
+	background-color: #333;
+	color: #fff;
+}
+
+.services {
+	display: flex;
+	flex-wrap: wrap;
+	margin-top: 50px;
+}
+
+.service-item {
+	flex: 1;
+	text-align: center;
+	margin: 20px;
+}
+
+.service-item img {
+	margin-bottom: 20px;
+}
+
+.service-item h3 {
+	font-size: 2rem;
+	margin-bottom: 10px;
+}
+
+.service-item p {
+	font-size: 1.2rem;
+}
+
+.cta {
+	background-color: #eee;
+	text-align: center;
+	padding: 50px;
+}
+
+.cta h2 {
+	font-size: 3rem;
+	margin-bottom: 20px;
+}
+
+.cta p {
+	font-size: 1.5rem;
+	margin-bottom: 30px;
+}
+
+footer {
+	background-color: #333;
+	color: #fff;
+	text-align: center;
+	padding: 20px;
+	margin-top: 50px;
+}
+
+footer p {
+	margin: 0;
+}
+
+footer a {
+	color: #fff;
+	text-decoration: none;
+}
+
+footer a:hover {
+	text-decoration: underline;
+} */

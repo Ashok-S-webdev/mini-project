@@ -1,0 +1,65 @@
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Donor Registration Form</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<div class="container">
+			<form action="get" class="regform" id="dreg">
+				<h1 class="title">Donor Registration Form</h1>
+				<label>Name</label><br />
+				<div class="regname">
+					<input type="text" name="fname" placeholder="First Name" />
+					<input type="text" name="lname" placeholder="Last Name" />
+				</div>
+				<br />
+				<label for="sname">Father or Mother's name</label><br />
+				<input
+					type="text"
+					name="sname"
+					placeholder="Father or Mother Name"
+				/><br />
+				<label for="address">Address Line</label><br />
+				<input type="text" placeholder="Address Line" />
+				<br />
+				<div class="regaddress">
+					<input type="text" name="city" placeholder="City" />
+					<input type="text" name="district" placeholder="District" />
+					<input type="text" name="state" placeholder="State" />
+					<input type="text" name="pincode" placeholder="Pincode" />
+				</div>
+				<br />
+				<label for="mobile">Mobile Number</label><br />
+				<input type="text" name="mobile" placeholder="Mobile Number" /><br />
+
+				<label for="occupation">Occupation</label><br />
+				<select name="occupation" id="occupation" form_id="dreg">
+					<option value="" selected disabled>--Occupation--</option>
+					<option value="student">Student</option>
+					<option value="business">Business</option>
+					<option value="selfemployed">Self Employed</option>
+					<option value="government">Government Employee</option></select
+				><br />
+
+				<label for="Gender">Gender</label><br />
+				<select name="gender" id="gender" form_id="dreg">
+					<option value="" selected disabled>--Gender--</option>
+					<option value="male">Male</option>
+					<option value="female">Female</option>
+					<option value="other">Other</option></select
+				><br />
+
+				<label for="blood">Blood Group</label><br />
+				<select name="blood" id="blood" form_id="dreg">
+					<option value="">--Blood Group--</option>
+					<option value="ap">A+</option>
+					<option value="bp">B+</option>
+					<option value="op">O+</option></select
+				><br />
+			</form>
+		</div>
+	</body>
+</html>
