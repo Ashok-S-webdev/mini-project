@@ -4,24 +4,40 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Donor Registration Form</title>
-		<link rel="stylesheet" href="style.css" />
+		<link rel="stylesheet" href="dreg.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&family=Outfit:wght@200;300;400;500;600&display=swap"
+			rel="stylesheet"
+		/>
 	</head>
 	<body>
 		<div class="container">
 			<form action="get" class="regform" id="dreg">
-				<h1 class="title">Donor Registration Form</h1>
-				<label>Name</label><br />
-				<div class="regname">
-					<input type="text" name="fname" placeholder="First Name" />
-					<input type="text" name="lname" placeholder="Last Name" />
+				<h1 class="title">DONOR REGISTRATION FORM</h1>
+
+				<div class="regname form-sec">
+					<label>Name</label>
+					<input type="text" name="fname" placeholder="Name" />
 				</div>
-				<br />
-				<label for="sname">Father or Mother's name</label><br />
-				<input
-					type="text"
-					name="sname"
-					placeholder="Father or Mother Name"
-				/><br />
+
+				<div class="form-sec">
+					<label for="sname">Father or Mother's name</label>
+					<input type="text" name="sname" placeholder="Father or Mother Name" />
+				</div>
+
+				<div class="form-sec drop-down">
+					<label>Age</label>
+					<select name="age" id="age">
+						<option value="" disabled selected>Select your age</option>
+						<option value="20">20</option>
+						<option value="21">21</option>
+						<option value="22">22</option>
+						<option value="23">23</option>
+						<option value="24">24</option>
+					</select>
+				</div>
 				<label for="address">Address Line</label><br />
 				<input type="text" placeholder="Address Line" />
 				<br />
