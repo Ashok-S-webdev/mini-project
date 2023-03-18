@@ -1,18 +1,29 @@
+/* #F2E9E4
+#C9ADA7
+#9A8C98
+#4A4E69
+#22223B
+#EDEDE8 */
+
+:root {
+	--background-color: #f2e9e4;
+	--light: #c9ada7;
+	--medium: #9a8c98;
+	--dark: #4a4e69;
+	--text-color: #22223b;
+}
+
 * {
 	margin: 0;
 	padding: 0;
 	font-family: "Oswald", sans-serif;
 	font-family: "Outfit", sans-serif;
 	font-family: "Poppins", sans-serif;
-	color: white;
+	color: #22223b;
 }
 
 body {
-	background-image: 
-		url("medical.webp");
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
+	background: #f2e9e4;
 }
 
 .hero {
@@ -31,18 +42,15 @@ body {
 	width: 380px;
 	height: 480px;
 	margin: auto;
-	background: #ececec;
 	padding: 5px;
 	overflow: hidden;
-	background: transparent;
-	/* border: 2px solid rgba(255, 255, 255, 0.944); */
+	background: white;
 	box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
-
-	border-radius: 20px;
+	border-radius: 12px;
 	backdrop-filter: blur(15px);
 }
 
-.from-box label{
+.from-box label {
 	font-weight: bold;
 	font-size: large;
 }
@@ -52,10 +60,12 @@ body {
 	width: fit-content;
 	margin: 35px auto;
 	position: relative;
-	box-shadow: 0 0 20px 9px rgba(255, 255, 255, 0.04);
+	box-shadow: 0 0 20px 9px #4a4e690a;
 	border-radius: 30px;
 }
 .toggle-btn {
+	font-weight: bold;
+	font-size: medium;
 	color: white;
 	flex: 1;
 	width: 150px;
@@ -66,20 +76,20 @@ body {
 	border-radius: 20px;
 	outline: none;
 }
+
+#recep-log {
+	color: var(--text-color);
+}
+
 #btn {
 	position: absolute;
 	z-index: -5;
 	width: 150px;
 	height: 100%;
-	background-color: white;
-	border: 2px solid white;
+	background-color: var(--text-color);
 	box-sizing: border-box;
 	border-radius: 30px;
 	transition: 0.5s;
-}
-
-#donor-log {
-	color: black;
 }
 
 .input-group {
@@ -89,8 +99,6 @@ body {
 	transition: 0.5s;
 }
 
-.input-group label {
-}
 .input-field {
 	font-size: medium;
 	width: 100%;
@@ -99,28 +107,31 @@ body {
 	border-top: 0;
 	border-left: 0;
 	border-right: 0;
-	border-bottom: 2px solid white;
+	border-bottom: 2px solid var(--text-color);
 	outline: none;
 	background: transparent;
 }
 .submit-btn {
+	color: white;
+	font-size: medium;
+	font-weight: bold;
 	width: 85%;
 	padding: 10px 30px;
 	cursor: pointer;
 	display: block;
 	margin: 50px auto;
-	background: none;
-	border: 2px solid white;
+	background: var(--text-color);
+	border: 2px solid var(--text-color);
 	outline: none;
 	border-radius: 30px;
 	transition: 0.2s;
 }
 
 .submit-btn:hover {
-	color: black;
-	background: white;
+	background: #4a4e69;
 }
 .forget {
+	color: var(--text-color);
 	margin: 25px 0;
 }
 
@@ -133,7 +144,7 @@ body {
 	text-decoration: underline;
 }
 
-#donar {
+#donor {
 	left: 50px;
 }
 

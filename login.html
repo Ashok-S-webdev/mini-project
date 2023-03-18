@@ -8,7 +8,7 @@
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
-			href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&family=Outfit:wght@200;300;400;500;600&display=swap"
+			href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&family=Outfit:wght@200;300;400;500;600&family=Poppins:wght@300;400;500;600&family=Ubuntu:wght@300;400;500&display=swap"
 			rel="stylesheet"
 		/>
 	</head>
@@ -34,7 +34,7 @@
 						RECEPIENT
 					</button>
 				</div>
-				<form id="donar" class="input-group">
+				<form id="donor" class="input-group">
 					<label for="">Email</label>
 					<input type="text" class="input-field" name="mail" required />
 					<label for="">Password</label>
@@ -67,7 +67,7 @@
 			</div>
 		</div>
 		<script>
-			var x = document.getElementById("donar");
+			var x = document.getElementById("donor");
 			var y = document.getElementById("recep");
 			var z = document.getElementById("btn");
 			var dtext = document.getElementById("donor-log");
@@ -77,15 +77,17 @@
 				x.style.left = "-400px";
 				y.style.left = "50px";
 				z.style.left = "150px";
-				dtext.style.color = "white";
-				rtext.style.color = "black";
+				dtext.style.color = "var(--text-color)";
+				rtext.style.color = "white";
+				dtext.style.transition = "0.5s";
 			}
 			function donor() {
 				x.style.left = "50px";
 				y.style.left = "450px";
 				z.style.left = "0";
-				dtext.style.color = "black";
-				rtext.style.color = "white";
+				dtext.style.color = "white";
+				rtext.style.color = "var(--text-color)";
+				rtext.style.transition = "0.5s";
 			}
 		</script>
 	</body>

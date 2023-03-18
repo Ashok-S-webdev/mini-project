@@ -4,55 +4,123 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Donor Registration Form</title>
-		<link rel="stylesheet" href="dreg.css" />
+		<link rel="stylesheet" href="form.css" />
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+			crossorigin="anonymous"
+		/>
+
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
-			href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&family=Outfit:wght@200;300;400;500;600&display=swap"
+			href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&family=Outfit:wght@200;300;400;500;600&family=Poppins:wght@300;400;500;600&family=Ubuntu:wght@300;400;500&display=swap"
 			rel="stylesheet"
 		/>
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+			crossorigin="anonymous"
+		></script>
 	</head>
 	<body>
-		<div class="container">
-			<form action="get" class="regform dreg" id="dreg">
+		<div class="container" id="container">
+			<form class="regform row g-3" id="dreg">
 				<h1 class="title">DONOR REGISTRATION FORM</h1>
 
-				<div class="regname form-sec">
-					<label for="dname">Name</label>
-					<input type="text" name="dname" />
+				<div class="col-md-6 form-group required">
+					<label class="form-label control-label" for="dname">First Name</label>
+					<input
+						class="form-control"
+						type="text"
+						name="dname"
+						placeholder="Enter your first name"
+						required
+					/>
 				</div>
 
-				<div class="form-sec">
-					<label for="dob">Date of Birth</label>
-					<input type="date" name="dob" />
+				<div class="col-md-6">
+					<label class="form-label" for="dname">Last Name</label>
+					<input
+						class="form-control"
+						type="text"
+						name="dname"
+						placeholder="Enter your last name"
+					/>
 				</div>
 
-				<div class="form-sec drop-down">
-					<label>Age</label>
-					<select name="age" id="age">
-						<option value="" disabled selected>Select your age</option>
-						<option value="20">20</option>
-						<option value="21">21</option>
-						<option value="22">22</option>
-						<option value="23">23</option>
-						<option value="24">24</option>
-					</select>
+				<div class="col-md-4 form-group required">
+					<label class="form-label control-label" for="dob"
+						>Date of Birth</label
+					>
+					<input class="form-control" type="date" name="dob" required />
 				</div>
 
-				<div class="form-sec drop-down">
-					<label>Gender</label>
-					<select name="gender" id="gender">
-						<option value="" disabled selected>--Select your Gender--</option>
+				<div class="col-md-4 form-group required">
+					<label class="form-label control-label" for="age">Age</label>
+					<input
+						class="form-control"
+						type="number"
+						name="age"
+						readonly
+						required
+					/>
+				</div>
+
+				<div class="col-md-4 form-group required">
+					<label class="form-label control-label" for="gender">Gender</label>
+					<select class="form-select" name="gender" id="gender" required>
+						<option value="" selected>--Select your Gender--</option>
 						<option value="male">Male</option>
 						<option value="female">Female</option>
 						<option value="others">Others</option>
 					</select>
 				</div>
 
-				<div class="form-sec drop-down">
-					<label>Blood Group</label>
-					<select name="blood" id="blood">
-						<option value="" disabled selected>--Select your Blood Group--</option>
+				<div class="col-md-4 form-group required">
+					<label class="form-label control-label" for="mobilenum"
+						>Mobile Number</label
+					>
+					<input
+						class="form-control"
+						type="text"
+						name="mobilenum"
+						placeholder="Enter your mobile number"
+						required
+					/>
+				</div>
+
+				<div class="col-md-4 form-group required">
+					<label class="form-label control-label" for="mail">Email</label>
+					<input
+						class="form-control"
+						type="email"
+						name="mail"
+						placeholder="Enter your email address"
+						required
+					/>
+				</div>
+
+				<div class="col-md-4 form-group required">
+					<label class="form-label control-label" for="mobilenum"
+						>Create a Password</label
+					>
+					<input
+						class="form-control"
+						type="text"
+						name="mobilenum"
+						placeholder="Create your own password"
+						required
+					/>
+				</div>
+
+				<div class="col-md-4 form-group required">
+					<label class="form-label control-label" for="blood"
+						>Blood Group</label
+					>
+					<select class="form-select" name="blood" id="blood" required>
+						<option value="" selected>--Select your Blood Group--</option>
 						<option value="ap">A+</option>
 						<option value="an">A-</option>
 						<option value="bp">B+</option>
@@ -64,148 +132,223 @@
 					</select>
 				</div>
 
-				<div class="form-sec">
-					<label for="mobilenum">Mobile Number</label>
-					<input type="text" name="mobilenum" />
+				<div class="col-md-4 form-group required">
+					<label class="form-label control-label" for="aadhaar"
+						>Aadhaar Number</label
+					>
+					<input
+						class="form-control"
+						type="text"
+						name="aadhaar"
+						placeholder="Enter your Aadhaar number"
+						required
+					/>
 				</div>
 
-				<div class="form-sec">
-					<label for="addrline">Address Line</label>
-					<input type="text" name="addrline" />
+				<div class="col-md-4">
+					<label class="form-label" for="occupation">Occupation</label>
+					<select
+						class="form-select"
+						name="occupation"
+						id="occupation"
+						required
+					>
+						<option value="" selected>--Select your Occupation--</option>
+						<option value="student">Student</option>
+						<option value="business">Business</option>
+						<option value="self_employed">Self Employed</option>
+						<option value="government_employee">Government Employee</option>
+						<option value="other">Other</option>
+					</select>
 				</div>
 
-				<div class="form-sec">
-					<label for="city">City</label>
-					<input type="text" name="city" />
+				<div class="col-12 form-group required">
+					<label class="form-label control-label" for="addrline"
+						>Address Line</label
+					>
+					<input
+						class="form-control"
+						type="text"
+						name="addrline"
+						placeholder="Address Line 1"
+						required
+					/>
 				</div>
 
-				<div class="form-sec">
-					<label for="district">District</label>
-					<input type="text" name="district" />
+				<div class="col-md-4 form-group required">
+					<label class="form-label control-label" for="city">City</label>
+					<input
+						class="form-control"
+						type="text"
+						name="city"
+						required
+						placeholder="city"
+					/>
 				</div>
 
-				<div class="form-sec">
-					<label for="state">State</label>
-					<input type="text" name="state" />
+				<div class="col-md-4 form-group required">
+					<label class="form-label control-label" for="district"
+						>District</label
+					>
+					<input
+						class="form-control"
+						type="text"
+						name="district"
+						placeholder="district"
+						required
+					/>
 				</div>
 
-				<div class="form-sec">
-					<label for="pincode">Pincode</label>
-					<input type="text" name="pincode" />
-				</div>
-				
-				<div class="form-sec">
-					<label for="aadhaar">Aadhaar Number</label>
-					<input type="text" name="aadhaar" />
-				</div>
-
-				<div class="form-sec">
-					<label for="emname">Emergency Contact Name</label>
-					<input type="text" name="emname" />
+				<div class="col-md-4 form-group required">
+					<label class="form-label control-label" for="state">State</label>
+					<input
+						class="form-control"
+						type="text"
+						name="state"
+						required
+						placeholder="state"
+					/>
 				</div>
 
-				<div class="form-sec">
-					<label for="emmobile">Emergency Contact Number</label>
-					<input type="text" name="emmobile" />
+				<div class="col-md-4 form-group required">
+					<label class="form-label control-label" for="pincode">Pincode</label>
+					<input
+						class="form-control"
+						type="text"
+						name="pincode"
+						placeholder="pincode"
+						required
+					/>
 				</div>
 
-				<div class="form-sec check-box">
-					<label for="organs">Organs I wish to donate</label>
-					<div id="check-values">
-						<input type="checkbox" id="organ" name="organ" value="allorgans" />
-						<label for="organ1">All Organs</label><br>
-						<input type="checkbox" id="organ1" name="organ1" value="kidney" />
-						<label for="organ1">Kidney</label><br>						
-						<input type="checkbox" id="organ2" name="organ2" value="liver" />
-						<label for="organ1">Liver</label><br>					
-						<input type="checkbox" id="organ3" name="organ3" value="lungs" />
-						<label for="organ1">Lungs</label><br>
-						<input type="checkbox" id="organ4" name="organ4" value="pancreas" />
-						<label for="organ1">Pancreas</label><br>
-						<input type="checkbox" id="organ5" name="organ5" value="intestine" />
-						<label for="organ1">Intestine</label>
+				<div class="col-md-4 form-group required">
+					<label class="form-label control-label" for="emname"
+						>Emergency Contact Name</label
+					>
+					<input
+						class="form-control"
+						type="text"
+						name="emname"
+						placeholder="Person to contact in emergency"
+						required
+					/>
+				</div>
+
+				<div class="col-md-4 form-group required">
+					<label class="form-label control-label" for="emmobile"
+						>Emergency Contact Number</label
+					>
+					<input
+						class="form-control"
+						type="text"
+						name="emmobile"
+						placeholder="Mobile number"
+						required
+					/>
+				</div>
+
+				<div class="form-div col-md-12 form-group required">
+					<label class="form-label control-label" for="organs"
+						>Organs I wish to donate :</label
+					><br />
+					<div class="form-check form-check-inline">
+						<input
+							class="form-check-input"
+							type="checkbox"
+							id="organ"
+							name="organ"
+							value="allorgans"
+						/>
+						<label class="form-check-label" for="organ">All Organs</label>
 					</div>
+					<div class="form-check form-check-inline">
+						<input
+							class="form-check-input"
+							type="checkbox"
+							id="organ1"
+							name="organ1"
+							value="kidney"
+						/>
+						<label class="form-check-label" for="organ1">Kidney</label>
+					</div>
+					<div class="form-check form-check-inline">
+						<input
+							class="form-check-input"
+							type="checkbox"
+							id="organ2"
+							name="organ2"
+							value="liver"
+						/>
+						<label class="form-check-label" for="organ2">Liver</label>
+					</div>
+					<br />
+					<div class="form-check form-check-inline">
+						<input
+							class="form-check-input"
+							type="checkbox"
+							id="organ3"
+							name="organ3"
+							value="lungs"
+						/>
+						<label class="form-check-label" for="organ3">Lungs</label>
+					</div>
+					<div class="form-check form-check-inline">
+						<input
+							class="form-check-input"
+							type="checkbox"
+							id="organ4"
+							name="organ4"
+							value="pancreas"
+						/>
+						<label class="form-check-label" for="organ4">Pancreas</label>
+					</div>
+					<div class="form-check form-check-inline">
+						<input
+							class="form-check-input"
+							type="checkbox"
+							id="organ5"
+							name="organ5"
+							value="small_intestine"
+						/>
+						<label class="form-check-label" for="organ5">Small Intestine</label>
+					</div>
+				</div>
+				<hr />
 
+				<div class="col-12">
+					<div class="form-check">
+						<input
+							class="form-check-input"
+							type="checkbox"
+							value="bonafide"
+							id="check-1"
+							required
+						/>
+						<label class="form-check-label" for="check-1"
+							>I declare that I'm a citizen of India and above 18 years of
+							age</label
+						>
+					</div>
 				</div>
 
-				<div class="form-sec drop-down">
-					<label>Age</label>
-					<select name="age" id="age">
-						<option value="" disabled selected>Select your age</option>
-						<option value="20">20</option>
-						<option value="21">21</option>
-						<option value="22">22</option>
-						<option value="23">23</option>
-						<option value="24">24</option>
-					</select>
+				<div class="col-12">
+					<div class="form-check">
+						<input
+							class="form-check-input"
+							type="checkbox"
+							value="agreement"
+							id="check-2"
+							required
+						/>
+						<label class="form-check-label" for="check-2"
+							>I agree to the terms and conditions</label
+						>
+					</div>
 				</div>
 
-				<div class="form-sec drop-down">
-					<label>Age</label>
-					<select name="age" id="age">
-						<option value="" disabled selected>Select your age</option>
-						<option value="20">20</option>
-						<option value="21">21</option>
-						<option value="22">22</option>
-						<option value="23">23</option>
-						<option value="24">24</option>
-					</select>
+				<div class="form-button">
+					<input class="btn btn-primary" type="submit" value="Submit" />
 				</div>
-
-				<div class="form-sec drop-down">
-					<label>Blood Group</label>
-					<select name="blood" id="blood">
-						<option value="" disabled selected>Select your age</option>
-						<option value="20">20</option>
-						<option value="21">21</option>
-						<option value="22">22</option>
-						<option value="23">23</option>
-						<option value="24">24</option>
-					</select>
-				</div>
-
-				<div class="form-sec">
-					<label for="district">District</label>
-					<input type="text" name="district" />
-				</div>
-				
-				<label for="address">Address Line</label><br />
-				<input type="text" placeholder="Address Line" />
-				<br />
-				<div class="regaddress">
-					<input type="text" name="city" placeholder="City" />
-					<input type="text" name="district" placeholder="District" />
-					<input type="text" name="state" placeholder="State" />
-					<input type="text" name="pincode" placeholder="Pincode" />
-				</div>
-				<br />
-				<label for="mobile">Mobile Number</label><br />
-				<input type="text" name="mobile" placeholder="Mobile Number" /><br />
-
-				<label for="occupation">Occupation</label><br />
-				<select name="occupation" id="occupation" form_id="dreg">
-					<option value="" selected disabled>--Occupation--</option>
-					<option value="student">Student</option>
-					<option value="business">Business</option>
-					<option value="selfemployed">Self Employed</option>
-					<option value="government">Government Employee</option></select
-				><br />
-
-				<label for="Gender">Gender</label><br />
-				<select name="gender" id="gender" form_id="dreg">
-					<option value="" selected disabled>--Gender--</option>
-					<option value="male">Male</option>
-					<option value="female">Female</option>
-					<option value="other">Other</option></select
-				><br />
-
-				<label for="blood">Blood Group</label><br />
-				<select name="blood" id="blood" form_id="dreg">
-					<option value="">--Blood Group--</option>
-					<option value="ap">A+</option>
-					<option value="bp">B+</option>
-					<option value="op">O+</option></select
-				><br />
 			</form>
 		</div>
 	</body>
