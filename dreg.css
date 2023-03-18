@@ -9,8 +9,9 @@
 }
 
 body {
-	background: url("medical.webp") no-repeat;
+	background: linear-gradient(to bottom right,rgb(98, 213, 255),#040081);
 	background-position: center;
+	background-repeat: no-repeat;
 	background-size: cover;
 }
 .container {
@@ -22,6 +23,7 @@ body {
 }
 
 .title {
+	font-size: x-large;
 	text-align: center;
 	padding: 20px;
 }
@@ -32,30 +34,44 @@ body {
 	box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
 	border: none;
 	border-radius: 25px;
-	padding: 20px;
+	padding: 20px 50px;
 }
 
-#dreg {
+.dreg {
 	display: flex;
 	max-width: 500px;
 	flex-direction: column;
 }
 
-#dreg input {
-	outline: none;
-	border: none;
-	background: none;
+.dreg label{
+	font-size: large;
+	font-weight: bold;
 }
 
-#dreg label,
-input {
-	padding: 10px 0;
+#check-values{
+	margin: 10px 0;
+	padding: 0 20px;
+}
+
+#check-values label{
+	font-weight: normal;
+	font-size: medium;
+}
+
+.dreg input {
+	font-size: medium;
+	outline: none;
+	background: none;
 }
 
 select {
 	background: none;
 	outline: none;
-	border: none;
+	font-size: medium;
+	border: 0;
+	margin: 0 0 10px 0;
+	padding: 10px 0;
+	border-bottom: 2px solid white;
 }
 
 select option {
@@ -64,15 +80,19 @@ select option {
 
 .form-sec {
 	display: flex;
+	padding: 10px 0;
 	flex-direction: column;
 	justify-content: space-between;
 }
 
-.regname input,
-.regaddress input {
-	margin: 2px 0;
-	width: 48%;
+.form-sec input{
+	width: inherit;
+	padding: 10px 5px;
+	margin: 0 0 10px 0;
+	border: 0;
+	border-bottom: 2px solid white;
 }
+
 
 .regaddress {
 	display: flex;

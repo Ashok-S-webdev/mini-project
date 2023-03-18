@@ -14,17 +14,17 @@
 	</head>
 	<body>
 		<div class="container">
-			<form action="get" class="regform" id="dreg">
+			<form action="get" class="regform dreg" id="dreg">
 				<h1 class="title">DONOR REGISTRATION FORM</h1>
 
 				<div class="regname form-sec">
-					<label>Name</label>
-					<input type="text" name="fname" placeholder="Name" />
+					<label for="dname">Name</label>
+					<input type="text" name="dname" />
 				</div>
 
 				<div class="form-sec">
-					<label for="sname">Father or Mother's name</label>
-					<input type="text" name="sname" placeholder="Father or Mother Name" />
+					<label for="dob">Date of Birth</label>
+					<input type="date" name="dob" />
 				</div>
 
 				<div class="form-sec drop-down">
@@ -38,6 +38,137 @@
 						<option value="24">24</option>
 					</select>
 				</div>
+
+				<div class="form-sec drop-down">
+					<label>Gender</label>
+					<select name="gender" id="gender">
+						<option value="" disabled selected>--Select your Gender--</option>
+						<option value="male">Male</option>
+						<option value="female">Female</option>
+						<option value="others">Others</option>
+					</select>
+				</div>
+
+				<div class="form-sec drop-down">
+					<label>Blood Group</label>
+					<select name="blood" id="blood">
+						<option value="" disabled selected>--Select your Blood Group--</option>
+						<option value="ap">A+</option>
+						<option value="an">A-</option>
+						<option value="bp">B+</option>
+						<option value="bn">B-</option>
+						<option value="op">O+</option>
+						<option value="on">O-</option>
+						<option value="abp">AB+</option>
+						<option value="abn">AB-</option>
+					</select>
+				</div>
+
+				<div class="form-sec">
+					<label for="mobilenum">Mobile Number</label>
+					<input type="text" name="mobilenum" />
+				</div>
+
+				<div class="form-sec">
+					<label for="addrline">Address Line</label>
+					<input type="text" name="addrline" />
+				</div>
+
+				<div class="form-sec">
+					<label for="city">City</label>
+					<input type="text" name="city" />
+				</div>
+
+				<div class="form-sec">
+					<label for="district">District</label>
+					<input type="text" name="district" />
+				</div>
+
+				<div class="form-sec">
+					<label for="state">State</label>
+					<input type="text" name="state" />
+				</div>
+
+				<div class="form-sec">
+					<label for="pincode">Pincode</label>
+					<input type="text" name="pincode" />
+				</div>
+				
+				<div class="form-sec">
+					<label for="aadhaar">Aadhaar Number</label>
+					<input type="text" name="aadhaar" />
+				</div>
+
+				<div class="form-sec">
+					<label for="emname">Emergency Contact Name</label>
+					<input type="text" name="emname" />
+				</div>
+
+				<div class="form-sec">
+					<label for="emmobile">Emergency Contact Number</label>
+					<input type="text" name="emmobile" />
+				</div>
+
+				<div class="form-sec check-box">
+					<label for="organs">Organs I wish to donate</label>
+					<div id="check-values">
+						<input type="checkbox" id="organ" name="organ" value="allorgans" />
+						<label for="organ1">All Organs</label><br>
+						<input type="checkbox" id="organ1" name="organ1" value="kidney" />
+						<label for="organ1">Kidney</label><br>						
+						<input type="checkbox" id="organ2" name="organ2" value="liver" />
+						<label for="organ1">Liver</label><br>					
+						<input type="checkbox" id="organ3" name="organ3" value="lungs" />
+						<label for="organ1">Lungs</label><br>
+						<input type="checkbox" id="organ4" name="organ4" value="pancreas" />
+						<label for="organ1">Pancreas</label><br>
+						<input type="checkbox" id="organ5" name="organ5" value="intestine" />
+						<label for="organ1">Intestine</label>
+					</div>
+
+				</div>
+
+				<div class="form-sec drop-down">
+					<label>Age</label>
+					<select name="age" id="age">
+						<option value="" disabled selected>Select your age</option>
+						<option value="20">20</option>
+						<option value="21">21</option>
+						<option value="22">22</option>
+						<option value="23">23</option>
+						<option value="24">24</option>
+					</select>
+				</div>
+
+				<div class="form-sec drop-down">
+					<label>Age</label>
+					<select name="age" id="age">
+						<option value="" disabled selected>Select your age</option>
+						<option value="20">20</option>
+						<option value="21">21</option>
+						<option value="22">22</option>
+						<option value="23">23</option>
+						<option value="24">24</option>
+					</select>
+				</div>
+
+				<div class="form-sec drop-down">
+					<label>Blood Group</label>
+					<select name="blood" id="blood">
+						<option value="" disabled selected>Select your age</option>
+						<option value="20">20</option>
+						<option value="21">21</option>
+						<option value="22">22</option>
+						<option value="23">23</option>
+						<option value="24">24</option>
+					</select>
+				</div>
+
+				<div class="form-sec">
+					<label for="district">District</label>
+					<input type="text" name="district" />
+				</div>
+				
 				<label for="address">Address Line</label><br />
 				<input type="text" placeholder="Address Line" />
 				<br />
