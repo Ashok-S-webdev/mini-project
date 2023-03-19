@@ -15,7 +15,7 @@
 
 body {
 	color: white;
-	background: url("./home.jpg") !important;
+	background: url("../assets/home.jpg") !important;
 	background-size: cover !important;
 	background-position: center !important;
 }
