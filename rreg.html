@@ -29,75 +29,49 @@
 			<form class="regform row g-3" id="dreg">
 				<h1 class="title">RECIPIENT REGISTRATION FORM</h1>
 
-				<div class="col-md-4 form-group required">
-					<label class="form-label control-label" for="dname"
+				<div class="col-md-6 form-group required">
+					<label class="form-label control-label" for="org_code"
 						>Organization Code</label
 					>
 					<input
 						class="form-control"
 						type="text"
-						name="dname"
-						placeholder="Enter your first name"
-						required
-					/>
-				</div>
-
-				<div class="col-md-8 form-group required">
-					<label class="form-label control-label" for="dname"
-						>Orgnization Name</label
-					>
-					<input
-						class="form-control"
-						type="text"
-						name="dname"
-						placeholder="Enter your first name"
+						id="org_code"
+						placeholder="Organization code"
 						required
 					/>
 				</div>
 
 				<div class="col-md-6 form-group required">
-					<label class="form-label control-label" for="dname">First Name</label>
+					<label class="form-label control-label" for="org_name"
+						>Organization Name</label
+					>
 					<input
 						class="form-control"
 						type="text"
-						name="dname"
-						placeholder="Enter your first name"
+						id="org_name"
+						placeholder="Organization name"
 						required
 					/>
 				</div>
 
-				<div class="col-md-6">
-					<label class="form-label" for="dname">Last Name</label>
+				<div class="col-md-8 form-group required">
+					<label class="form-label control-label" for="first_name"
+						>Patient's Name</label
+					>
 					<input
 						class="form-control"
 						type="text"
-						name="dname"
-						placeholder="Enter your last name"
-					/>
-				</div>
-
-				<div class="col-md-4 form-group required">
-					<label class="form-label control-label" for="dob"
-						>Date of Birth</label
-					>
-					<input class="form-control" type="date" name="dob" required />
-				</div>
-
-				<div class="col-md-4 form-group required">
-					<label class="form-label control-label" for="age">Age</label>
-					<input
-						class="form-control"
-						type="number"
-						name="age"
-						readonly
+						id="first_name"
+						placeholder="Enter patient's name"
 						required
 					/>
 				</div>
 
 				<div class="col-md-4 form-group required">
 					<label class="form-label control-label" for="gender">Gender</label>
-					<select class="form-select" name="gender" id="gender" required>
-						<option value="" selected>--Select your Gender--</option>
+					<select class="form-select" id="gender" required>
+						<option value="" selected>--Gender--</option>
 						<option value="male">Male</option>
 						<option value="female">Female</option>
 						<option value="others">Others</option>
@@ -105,38 +79,20 @@
 				</div>
 
 				<div class="col-md-4 form-group required">
-					<label class="form-label control-label" for="mobilenum"
-						>Mobile Number</label
+					<label class="form-label control-label" for="dob"
+						>Date of Birth</label
 					>
-					<input
-						class="form-control"
-						type="text"
-						name="mobilenum"
-						placeholder="Enter your mobile number"
-						required
-					/>
+					<input class="form-control" type="date" id="dob" required />
 				</div>
 
 				<div class="col-md-4 form-group required">
-					<label class="form-label control-label" for="mail">Email</label>
+					<label class="form-label control-label" for="age">Age</label>
 					<input
 						class="form-control"
-						type="email"
-						name="mail"
-						placeholder="Enter your email address"
-						required
-					/>
-				</div>
-
-				<div class="col-md-4 form-group required">
-					<label class="form-label control-label" for="mobilenum"
-						>Create a Password</label
-					>
-					<input
-						class="form-control"
-						type="text"
-						name="mobilenum"
-						placeholder="Create your own password"
+						type="number"
+						id="age"
+						placeholder="age"
+						readonly
 						required
 					/>
 				</div>
@@ -145,8 +101,8 @@
 					<label class="form-label control-label" for="blood"
 						>Blood Group</label
 					>
-					<select class="form-select" name="blood" id="blood" required>
-						<option value="" selected>--Select your Blood Group--</option>
+					<select class="form-select" id="blood" required>
+						<option value="" selected>--Blood Group--</option>
 						<option value="ap">A+</option>
 						<option value="an">A-</option>
 						<option value="bp">B+</option>
@@ -159,43 +115,50 @@
 				</div>
 
 				<div class="col-md-4 form-group required">
+					<label class="form-label control-label" for="mobile_num"
+						>Mobile Number</label
+					>
+					<input
+						class="form-control"
+						type="text"
+						id="mobile_num"
+						placeholder="mobile number"
+						required
+					/>
+				</div>
+
+				<div class="col-md-4 form-group required">
+					<label class="form-label control-label" for="mail">Email</label>
+					<input
+						class="form-control"
+						type="email"
+						id="mail"
+						placeholder="email address"
+						required
+					/>
+				</div>
+
+				<div class="col-md-4 form-group required">
 					<label class="form-label control-label" for="aadhaar"
 						>Aadhaar Number</label
 					>
 					<input
 						class="form-control"
 						type="text"
-						name="aadhaar"
-						placeholder="Enter your Aadhaar number"
+						id="aadhaar"
+						placeholder="aadhaar number"
 						required
 					/>
 				</div>
 
-				<div class="col-md-4">
-					<label class="form-label" for="occupation">Occupation</label>
-					<select
-						class="form-select"
-						name="occupation"
-						id="occupation"
-						required
-					>
-						<option value="" selected>--Select your Occupation--</option>
-						<option value="student">Student</option>
-						<option value="business">Business</option>
-						<option value="self_employed">Self Employed</option>
-						<option value="government_employee">Government Employee</option>
-						<option value="other">Other</option>
-					</select>
-				</div>
-
 				<div class="col-8 form-group required">
-					<label class="form-label control-label" for="addrline"
+					<label class="form-label control-label" for="addr_line"
 						>Address Line</label
 					>
 					<input
 						class="form-control"
 						type="text"
-						name="addrline"
+						id="addr_line"
 						placeholder="Address Line 1"
 						required
 					/>
@@ -206,7 +169,7 @@
 					<input
 						class="form-control"
 						type="text"
-						name="city"
+						id="city"
 						required
 						placeholder="city"
 					/>
@@ -219,7 +182,7 @@
 					<input
 						class="form-control"
 						type="text"
-						name="district"
+						id="district"
 						placeholder="district"
 						required
 					/>
@@ -230,7 +193,7 @@
 					<input
 						class="form-control"
 						type="text"
-						name="state"
+						id="state"
 						required
 						placeholder="state"
 					/>
@@ -241,43 +204,22 @@
 					<input
 						class="form-control"
 						type="text"
-						name="pincode"
+						id="pincode"
 						placeholder="pincode"
 						required
 					/>
 				</div>
 
-				<div class="col-md-4 form-group required">
-					<label class="form-label control-label" for="emname"
-						>Emergency Contact Name</label
+				<div class="col-md-6 form-group required">
+					<label class="form-label control-label" for="social_history"
+						>Current Medical Condition</label
 					>
-					<input
-						class="form-control"
-						type="text"
-						name="emname"
-						placeholder="Person to contact in emergency"
-						required
-					/>
-				</div>
-
-				<div class="col-md-4 form-group required">
-					<label class="form-label control-label" for="emmobile"
-						>Emergency Contact Number</label
-					>
-					<input
-						class="form-control"
-						type="text"
-						name="emmobile"
-						placeholder="Mobile number"
-						required
-					/>
-				</div>
-
-				<div class="col-md-4 form-group required">
-					<label class="form-label control-label" for="emrelation"
-						>Relationship</label
-					>
-					<input class="form-control" type="text" name="emrelation" required />
+					<textarea
+						name="social"
+						id="social_history"
+						class="form-control form-textarea"
+						placeholder="Recipient's current medical medical condition and the reason for the transplantation."
+					></textarea>
 				</div>
 
 				<div class="col-md-6">
@@ -287,123 +229,17 @@
 					<textarea
 						id="medical_history"
 						class="form-control form-textarea"
-						placeholder="Any chronic conditions or illness, allergies, medications taken and recent surgeries."
+						placeholder="Any pre-existing conditions, previous surgeries and ongoing medical treatments."
 					></textarea>
-				</div>
-
-				<div class="col-md-6">
-					<label class="form-label" for="social_history"
-						>Social History(if any)</label
-					>
-					<textarea
-						name="social"
-						id="social_history"
-						class="form-control form-textarea"
-						placeholder="Lifestyle habits such as smoking, drinking, drug use, etc."
-					></textarea>
-				</div>
-
-				<div class="form-div col-md-12 form-group required">
-					<label class="form-label control-label" for="organs"
-						>Organs I wish to donate :</label
-					><br />
-					<div class="form-check form-check-inline">
-						<input
-							class="form-check-input"
-							type="checkbox"
-							id="organ"
-							name="organ"
-							value="allorgans"
-						/>
-						<label class="form-check-label" for="organ">All Organs</label>
-					</div>
-					<div class="form-check form-check-inline">
-						<input
-							class="form-check-input"
-							type="checkbox"
-							id="organ1"
-							name="organ1"
-							value="kidney"
-						/>
-						<label class="form-check-label" for="organ1">Kidney</label>
-					</div>
-					<div class="form-check form-check-inline">
-						<input
-							class="form-check-input"
-							type="checkbox"
-							id="organ2"
-							name="organ2"
-							value="liver"
-						/>
-						<label class="form-check-label" for="organ2">Liver</label>
-					</div>
-					<br />
-					<div class="form-check form-check-inline">
-						<input
-							class="form-check-input"
-							type="checkbox"
-							id="organ3"
-							name="organ3"
-							value="lungs"
-						/>
-						<label class="form-check-label" for="organ3">Lungs</label>
-					</div>
-					<div class="form-check form-check-inline">
-						<input
-							class="form-check-input"
-							type="checkbox"
-							id="organ4"
-							name="organ4"
-							value="pancreas"
-						/>
-						<label class="form-check-label" for="organ4">Pancreas</label>
-					</div>
-					<div class="form-check form-check-inline">
-						<input
-							class="form-check-input"
-							type="checkbox"
-							id="organ5"
-							name="organ5"
-							value="small_intestine"
-						/>
-						<label class="form-check-label" for="organ5">Small Intestine</label>
-					</div>
-				</div>
-				<hr />
-
-				<div class="col-12">
-					<div class="form-check">
-						<input
-							class="form-check-input"
-							type="checkbox"
-							value="bonafide"
-							id="check-1"
-							required
-						/>
-						<label class="form-check-label" for="check-1"
-							>I declare that I'm a citizen of India and above 18 years of
-							age</label
-						>
-					</div>
-				</div>
-
-				<div class="col-12">
-					<div class="form-check">
-						<input
-							class="form-check-input"
-							type="checkbox"
-							value="agreement"
-							id="check-2"
-							required
-						/>
-						<label class="form-check-label" for="check-2"
-							>I agree to the terms and conditions</label
-						>
-					</div>
 				</div>
 
 				<div class="form-button">
-					<input class="btn btn-primary" type="submit" value="Submit" />
+					<input
+						class="btn btn-primary"
+						type="submit"
+						value="Submit"
+						id="submit_btn"
+					/>
 				</div>
 			</form>
 		</div>
