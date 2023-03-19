@@ -3,7 +3,7 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Donor Registration Form</title>
+		<title>Recipient Registration Form</title>
 		<link rel="stylesheet" href="form.css" />
 		<link
 			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
@@ -27,27 +27,51 @@
 	<body>
 		<div class="container" id="container">
 			<form class="regform row g-3" id="dreg">
-				<h1 class="title">DONOR REGISTRATION FORM</h1>
+				<h1 class="title">RECIPIENT REGISTRATION FORM</h1>
 
-				<div class="col-md-6 form-group required">
-					<label class="form-label control-label" for="first_name"
-						>First Name</label
+				<div class="col-md-4 form-group required">
+					<label class="form-label control-label" for="dname"
+						>Organization Code</label
 					>
 					<input
 						class="form-control"
 						type="text"
-						id="first_name"
+						name="dname"
+						placeholder="Enter your first name"
+						required
+					/>
+				</div>
+
+				<div class="col-md-8 form-group required">
+					<label class="form-label control-label" for="dname"
+						>Orgnization Name</label
+					>
+					<input
+						class="form-control"
+						type="text"
+						name="dname"
+						placeholder="Enter your first name"
+						required
+					/>
+				</div>
+
+				<div class="col-md-6 form-group required">
+					<label class="form-label control-label" for="dname">First Name</label>
+					<input
+						class="form-control"
+						type="text"
+						name="dname"
 						placeholder="Enter your first name"
 						required
 					/>
 				</div>
 
 				<div class="col-md-6">
-					<label class="form-label" for="last_name">Last Name</label>
+					<label class="form-label" for="dname">Last Name</label>
 					<input
 						class="form-control"
 						type="text"
-						id="last_name"
+						name="dname"
 						placeholder="Enter your last name"
 					/>
 				</div>
@@ -56,7 +80,7 @@
 					<label class="form-label control-label" for="dob"
 						>Date of Birth</label
 					>
-					<input class="form-control" type="date" id="dob" required />
+					<input class="form-control" type="date" name="dob" required />
 				</div>
 
 				<div class="col-md-4 form-group required">
@@ -64,7 +88,7 @@
 					<input
 						class="form-control"
 						type="number"
-						id="age"
+						name="age"
 						readonly
 						required
 					/>
@@ -72,7 +96,7 @@
 
 				<div class="col-md-4 form-group required">
 					<label class="form-label control-label" for="gender">Gender</label>
-					<select class="form-select" id="gender" required>
+					<select class="form-select" name="gender" id="gender" required>
 						<option value="" selected>--Select your Gender--</option>
 						<option value="male">Male</option>
 						<option value="female">Female</option>
@@ -81,13 +105,13 @@
 				</div>
 
 				<div class="col-md-4 form-group required">
-					<label class="form-label control-label" for="mobile_num"
+					<label class="form-label control-label" for="mobilenum"
 						>Mobile Number</label
 					>
 					<input
 						class="form-control"
 						type="text"
-						id="mobile_num"
+						name="mobilenum"
 						placeholder="Enter your mobile number"
 						required
 					/>
@@ -98,20 +122,20 @@
 					<input
 						class="form-control"
 						type="email"
-						id="mail"
+						name="mail"
 						placeholder="Enter your email address"
 						required
 					/>
 				</div>
 
 				<div class="col-md-4 form-group required">
-					<label class="form-label control-label" for="password"
+					<label class="form-label control-label" for="mobilenum"
 						>Create a Password</label
 					>
 					<input
 						class="form-control"
 						type="text"
-						id="password"
+						name="mobilenum"
 						placeholder="Create your own password"
 						required
 					/>
@@ -121,7 +145,7 @@
 					<label class="form-label control-label" for="blood"
 						>Blood Group</label
 					>
-					<select class="form-select" id="blood" required>
+					<select class="form-select" name="blood" id="blood" required>
 						<option value="" selected>--Select your Blood Group--</option>
 						<option value="ap">A+</option>
 						<option value="an">A-</option>
@@ -141,7 +165,7 @@
 					<input
 						class="form-control"
 						type="text"
-						id="aadhaar"
+						name="aadhaar"
 						placeholder="Enter your Aadhaar number"
 						required
 					/>
@@ -149,7 +173,12 @@
 
 				<div class="col-md-4">
 					<label class="form-label" for="occupation">Occupation</label>
-					<select class="form-select" id="occupation" required>
+					<select
+						class="form-select"
+						name="occupation"
+						id="occupation"
+						required
+					>
 						<option value="" selected>--Select your Occupation--</option>
 						<option value="student">Student</option>
 						<option value="business">Business</option>
@@ -160,13 +189,13 @@
 				</div>
 
 				<div class="col-8 form-group required">
-					<label class="form-label control-label" for="addr_line"
+					<label class="form-label control-label" for="addrline"
 						>Address Line</label
 					>
 					<input
 						class="form-control"
 						type="text"
-						id="addr_line"
+						name="addrline"
 						placeholder="Address Line 1"
 						required
 					/>
@@ -177,7 +206,7 @@
 					<input
 						class="form-control"
 						type="text"
-						id="city"
+						name="city"
 						required
 						placeholder="city"
 					/>
@@ -190,7 +219,7 @@
 					<input
 						class="form-control"
 						type="text"
-						id="district"
+						name="district"
 						placeholder="district"
 						required
 					/>
@@ -201,7 +230,7 @@
 					<input
 						class="form-control"
 						type="text"
-						id="state"
+						name="state"
 						required
 						placeholder="state"
 					/>
@@ -212,43 +241,43 @@
 					<input
 						class="form-control"
 						type="text"
-						id="pincode"
+						name="pincode"
 						placeholder="pincode"
 						required
 					/>
 				</div>
 
 				<div class="col-md-4 form-group required">
-					<label class="form-label control-label" for="em_name"
+					<label class="form-label control-label" for="emname"
 						>Emergency Contact Name</label
 					>
 					<input
 						class="form-control"
 						type="text"
-						id="em_name"
+						name="emname"
 						placeholder="Person to contact in emergency"
 						required
 					/>
 				</div>
 
 				<div class="col-md-4 form-group required">
-					<label class="form-label control-label" for="em_mobile"
+					<label class="form-label control-label" for="emmobile"
 						>Emergency Contact Number</label
 					>
 					<input
 						class="form-control"
 						type="text"
-						id="em_mobile"
+						name="emmobile"
 						placeholder="Mobile number"
 						required
 					/>
 				</div>
 
 				<div class="col-md-4 form-group required">
-					<label class="form-label control-label" for="em_relation"
+					<label class="form-label control-label" for="emrelation"
 						>Relationship</label
 					>
-					<input class="form-control" type="text" id="em_relation" required />
+					<input class="form-control" type="text" name="emrelation" required />
 				</div>
 
 				<div class="col-md-6">
@@ -283,6 +312,7 @@
 							class="form-check-input"
 							type="checkbox"
 							id="organ"
+							name="organ"
 							value="allorgans"
 						/>
 						<label class="form-check-label" for="organ">All Organs</label>
@@ -292,6 +322,7 @@
 							class="form-check-input"
 							type="checkbox"
 							id="organ1"
+							name="organ1"
 							value="kidney"
 						/>
 						<label class="form-check-label" for="organ1">Kidney</label>
@@ -301,6 +332,7 @@
 							class="form-check-input"
 							type="checkbox"
 							id="organ2"
+							name="organ2"
 							value="liver"
 						/>
 						<label class="form-check-label" for="organ2">Liver</label>
@@ -311,6 +343,7 @@
 							class="form-check-input"
 							type="checkbox"
 							id="organ3"
+							name="organ3"
 							value="lungs"
 						/>
 						<label class="form-check-label" for="organ3">Lungs</label>
@@ -320,6 +353,7 @@
 							class="form-check-input"
 							type="checkbox"
 							id="organ4"
+							name="organ4"
 							value="pancreas"
 						/>
 						<label class="form-check-label" for="organ4">Pancreas</label>
@@ -329,6 +363,7 @@
 							class="form-check-input"
 							type="checkbox"
 							id="organ5"
+							name="organ5"
 							value="small_intestine"
 						/>
 						<label class="form-check-label" for="organ5">Small Intestine</label>
@@ -368,12 +403,7 @@
 				</div>
 
 				<div class="form-button">
-					<input
-						class="btn btn-primary"
-						type="submit"
-						value="Submit"
-						id="submit_btn"
-					/>
+					<input class="btn btn-primary" type="submit" value="Submit" />
 				</div>
 			</form>
 		</div>
