@@ -12,10 +12,15 @@ input.addEventListener("blur", () => {
 	var age = today.getFullYear() - dob.getFullYear();
 	var monthDiff = month - bornMonth;
 
-	if (bornMonth < month) {
-		age -= 1;
-	} else {
-		//pass
+	if (isNaN(monthDiff)) {
+		monthDiff = 0;
+		output.value = age;
 	}
-	output.value = age;
+
+	if (monthDiff > 0) {
+		output.value = age;
+	} else {
+		output.value = age - 1;
+	}
+	console.log(monthDiff);
 });
