@@ -4,9 +4,11 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from .models import User, Recipient, Donor
 from django.contrib.auth.decorators import login_required
+from django.views import generic
 
 
 # Create your views here.
+
 
 def index(request):
     return render(request, 'organdonation/index.html')
@@ -163,4 +165,5 @@ def userlogout(request):
 def home(request):
     current_user = request.user
     return render(request, 'organdonation/index.html', {'user': current_user})
+
 

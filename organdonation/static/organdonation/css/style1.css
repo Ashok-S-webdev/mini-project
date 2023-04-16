@@ -1,0 +1,85 @@
+:root {
+	--background-color: #f2e9e4;
+	--light: #c9ada7;
+	--medium: #9a8c98;
+	--dark: #4a4e69;
+	--text-color: #22223b;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Poppins", sans-serif;
+}
+
+nav {
+	height: 8vh;
+}
+
+.navbar a {
+	font-size: 18px;
+}
+
+.navbar a:hover {
+	text-decoration: underline;
+}
+
+.navbar .navbar-brand {
+	font-size: 30px;
+}
+
+.navbar .navbar-brand:hover {
+	text-decoration: none;
+	cursor: default;
+}
+
+.navbar-nav .active {
+	font-weight: bold;
+}
+
+.quote {
+	font-family: "Fasthand", cursive;
+	font-size: 4rem;
+}
+
+.content {
+	height: 50vh;
+	display: flex;
+	line-height: 30px;
+	contain: content;
+}
+
+.content p {
+	display: flex;
+	align-items: center;
+	font-size: large;
+	margin: 50px 20px;
+}
+
+.pledging {
+	height: 30vh;
+}
+
+.pledging p {
+	display: flex;
+	justify-content: center;
+	font-size: large;
+	line-height: 30px;
+}
+
+.pledgin button {
+	display: block;
+}
+
+.reg-link a {
+	color: white;
+	text-decoration: none;
+}
+
+@media only screen and (max-width: 768px) {
+	.pledging p,
+	.content p {
+		line-height: 30px;
+	}
+}

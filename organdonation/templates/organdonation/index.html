@@ -6,35 +6,74 @@
 
 
 {% block csslink%}
+{% if user.is_authenticated %}
+<link rel="stylesheet" href="{% static 'organdonation/css/style1.css' %}" />
+
+{% else %}
 <link rel="stylesheet" href="{% static 'organdonation/css/style.css' %}" />
+{% endif %}
 {%endblock csslink %} 
 
 {% block body %}
-<div class="container text-center quote">Life is a gift, Pass it on</div>
-<div class="container">
-	<div class="row">
-		<div class="col-md-6 text-center content">
-			<p>
-				Mostly due to unawareness and prejudices, there is a huge shortage of
-				organs that are need for transplants. Many people who need transplants
-				of organs and tissues cannot get them because of a shortage of
-				donations. Every month, more than 2,000 new names are added to the
-				national waiting list for organ transplants. About 16 or 17 people die
-				every day while waiting for a transplant of a vital organ such as a
-				kidney, heart or liver.
-			</p>
-		</div>
-		<div class="row">
-			<div class="col-md-6 text-center pledging">
-				<p>
-					So today is a good day to save lives <br />
-					Become an Organ Donor
-				</p>
-				<button class="btn btn-dark reg-link">
-					<a href="{% url 'dregister' %}">Pledge yourself as a Donor</a>
-				</button>
+	{% if user.is_authenticated and user.is_donor %}
+		<div class="container-fluid my-5">
+			<div class="row">
+				<div class="col-md-12">
+					<h1>Name : {{user.first_name}} {{user.last_name}} {{ user.gender }}</h1>
+					<hr>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-8 offset-md-1">
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item">Email : <strong>{{ user.email }}</strong></li>
+						<li class="list-group-item">Date of Birth : <strong>{{ user.donor.dob }}</strong></li>
+						<li class="list-group-item">Age : <strong>{{ user.donor.age }}</strong></li>
+						<li class="list-group-item">Gender : <strong>{{ user.donor.gender }}</strong></li>
+						<li class="list-group-item">Blood Group : <strong>{{ user.blood_group }}</strong></li>
+						<li class="list-group-item">Mobile No : <strong>{{ user.donor.mobile }}</strong></li>
+						<li class="list-group-item">Aadhaar No : <strong>{{ user.donor.aadhaar }}</strong></li>
+						<li class="list-group-item">Address Line : <strong>{{ user.donor.addr_line }}</strong></li>
+						<li class="list-group-item">City : <strong>{{ user.donor.city }}</strong></li>
+						<li class="list-group-item">District : <strong>{{ user.donor.district }}</strong></li>
+						<li class="list-group-item">State : <strong>{{ user.donor.state }}</strong></li>
+						<li class="list-group-item">Pincode : <strong>{{ user.donor.pincode }}</strong></li>
+						<li class="list-group-item">Organ : <strong>{{ user.donor.organ }}</strong></li>
+						<li class="list-group-item">Medical History : <strong>{{ user.donor.medical_history }}</strong></li>
+						<li class="list-group-item">Social History : <strong>{{ user.donor.social_history }}</strong></li>
+					</ul>
+				</div>
 			</div>
 		</div>
-	</div>
-</div>
+	{% elif user.is_authenticated and user.is_recipient %}
+		<h1>Welcome {{ user.first_name }}</h1>
+	{% else %}
+		<div class="container text-center quote">Life is a gift, Pass it on</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 text-center content">
+					<p>
+						Mostly due to unawareness and prejudices, there is a huge shortage of
+						organs that are need for transplants. Many people who need transplants
+						of organs and tissues cannot get them because of a shortage of
+						donations. Every month, more than 2,000 new names are added to the
+						national waiting list for organ transplants. About 16 or 17 people die
+						every day while waiting for a transplant of a vital organ such as a
+						kidney, heart or liver.
+					</p>
+				</div>
+				<div class="row">
+					<div class="col-md-6 text-center pledging">
+						<p>
+							So today is a good day to save lives <br />
+							Become an Organ Donor
+						</p>
+						<button class="btn btn-dark reg-link">
+							<a href="{% url 'dregister' %}">Pledge yourself as a Donor</a>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	{% endif %}
 {% endblock body %}
