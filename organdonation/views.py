@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
 from .models import User, Recipient, Donor
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -135,54 +136,31 @@ def rregister(request):
     else:
         return render(request, 'organdonation/rregister.html')
 
-def dlogin(request):
+def userlogin(request):
     if request.method == 'POST':
         email = request.POST['email']
         password = request.POST['password']
 
         user = authenticate(request, email=email, password = password)
-        if user is not None and user.is_donor:
+        if user is not None:
             login(request, user)
             messages.success(request, 'You have been logged in!')
-            return redirect('donor_home')
+            return redirect('home')
         else:
             messages.success(request, 'Not valid Credentials!')
             return redirect('dlogin')
     else:
-        return render(request, 'organdonation/dlogin.html', {})
-
-def rlogin(request):
-    if request.method == 'POST':
-        email = request.POST['email']
-        password = request.POST['password']
-
-        user = authenticate(request, email=email, password = password)
-        if user is not None and user.is_recipient:
-            login(request, user)
-            messages.success(request, 'You have been logged in!')
-            return redirect('recipient_home')
-        else:
-            messages.success(request, 'Not valid Credentials!')
-            return redirect('rlogin')
-    else:
-        return render(request, 'organdonation/rlogin.html')
+        return render(request, 'organdonation/login.html', {})
 
 
-def dlogout(request):
-    logout(request)
-    messages.success(request, 'You have been logged out Successfully')
-    return redirect('index')
-
-def rlogout(request):
+def userlogout(request):
     logout(request)
     messages.success(request, 'You have been logged out Successfully')
     return redirect('index')
 
 
-def donor_home(request):
+@login_required(login_url='dlogin')
+def home(request):
     current_user = request.user
-    return render(request, 'organdonation/dhome.html', {'user': current_user})
+    return render(request, 'organdonation/index.html', {'user': current_user})
 
-def recipient_home(request):
-    current_user = request.user
-    return render(request, 'organdonation/rhome.html', {'user': current_user})

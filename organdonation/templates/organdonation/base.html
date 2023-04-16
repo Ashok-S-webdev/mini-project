@@ -39,59 +39,10 @@
 				>
 					<span class="navbar-toggler-icon"></span>
 				</button>
-				<div class="collapse navbar-collapse" id="navbarNavDropdown">
-					<ul class="navbar-nav nav-fill ms-auto">
-						<li class="nav-item">
-							<a class="nav-link active" aria-current="page" href="#">Home</a>
-						</li>
-						{% if user.is_authenticated %}
-						<li class="nav-item">
-							<a class="nav-link" href={%block logoutlink%} {% endblock %}>Logout</a>
-						</li>
-						{%else%}
-						<li class="nav-item dropdown">
-							<a
-								class="nav-link dropdown-toggle"
-								href="#"
-								role="button"
-								data-bs-toggle="dropdown"
-								aria-expanded="false"
-							>
-								Login
-							</a>
-							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="{% url 'dlogin' %}">Donor</a></li>
-								<li>
-									<a class="dropdown-item" href="{% url 'rlogin' %}">Recipient</a>
-								</li>
-							</ul>
-						</li>
-						<li class="nav-item dropdown">
-							<a
-								class="nav-link dropdown-toggle"
-								href="#"
-								role="button"
-								data-bs-toggle="dropdown"
-								aria-expanded="false"
-							>
-								Register
-							</a>
-							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="{% url 'dregister' %}">Donor</a></li>
-								<li>
-									<a class="dropdown-item" href="{% url 'rregister' %}">Recipient</a>
-								</li>
-							</ul>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">Learn more</a>
-						</li>
-						{% endif %}
-						
-					</ul>
-				</div>
+				{% include 'organdonation/navbar.html' %}
 			</div>
 		</nav>
+		
 		
 		<div class="position-absolute container-fluid">
 			{% if messages %}

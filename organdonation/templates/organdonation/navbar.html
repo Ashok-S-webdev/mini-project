@@ -1,0 +1,76 @@
+{% load static %}
+
+
+{% if user.is_authenticated and user.is_donor %}
+<div class="collapse navbar-collapse" id="navbarNavDropdown">
+   <ul class="navbar-nav nav-fill ms-auto">
+      <li class="nav-item">
+         <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Profile</a>
+      </li>
+      <li class="nav-item">
+         <a class="nav-link" href={% url 'userlogout'%}>Logout</a>
+      </li>
+      <li class="nav-item">
+         <a class="nav-link" href="#">Learn more</a>
+      </li>
+   </ul>
+</div>
+
+{% elif user.is_authenticated and user.is_recipient %}
+<div class="collapse navbar-collapse" id="navbarNavDropdown">
+   <ul class="navbar-nav nav-fill ms-auto">
+      <li class="nav-item">
+         <a class="nav-link active" aria-current="page" href="#">Home</a>
+      </li>
+      <li class="nav-item">
+         <a class="nav-link" href={% url 'userlogout' %}>Logout</a>
+      </li>
+      <li class="nav-item">
+         <a class="nav-link" href="#">Learn more</a>
+      </li>
+   </ul>
+</div>
+
+{% else %}
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+         <ul class="navbar-nav nav-fill ms-auto">
+            <li class="nav-item">
+               <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+               <a
+                  class="nav-link"
+                  href="{% url 'login' %}"
+               >
+                  Login
+               </a>
+               {% comment %} <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="{% url 'login' %}">Donor</a></li>
+                  <li>
+                     <a class="dropdown-item" href="{% url 'login' %}">Recipient</a>
+                  </li>
+               </ul> {% endcomment %}
+            </li>
+            <li class="nav-item dropdown">
+               <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+               >
+                  Register
+               </a>
+               <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="{% url 'dregister' %}">Donor</a></li>
+                  <li>
+                     <a class="dropdown-item" href="{% url 'rregister' %}">Recipient</a>
+                  </li>
+               </ul>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" href="#">Learn more</a>
+            </li>
+         </ul>
+      </div>
+{% endif %}
