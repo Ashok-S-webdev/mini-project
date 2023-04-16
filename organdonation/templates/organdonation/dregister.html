@@ -1,0 +1,351 @@
+{% extends 'organdonation/form.html' %}
+
+{% load static %}
+
+{% block title %} Donor Registration Form {% endblock %}
+
+{% block csslink %} 
+<link rel="stylesheet" href="{% static 'organdonation/css/form.css' %}" /> 
+{% endblock %}
+
+
+
+
+{% block body%}
+<div class="container">
+   <form class="regform row g-3" action="{% url 'dregister' %}" method="POST">
+      {% csrf_token %}
+      <h1 class="title">DONOR REGISTRATION FORM</h1>
+
+      <div class="col-md-6 form-group ">
+         <label class="form-label control-label" for="first_name"
+            >First Name</label
+         >
+         <input
+            class="form-control"
+            type="text"
+            name="first_name"
+            placeholder="Enter your first name"
+            
+         />
+      </div>
+
+      <div class="col-md-6">
+         <label class="form-label" for="last_name">Last Name</label>
+         <input
+            class="form-control"
+            type="text"
+            name="last_name"
+            placeholder="Enter your last name"
+         />
+      </div>
+
+      <div class="col-md-4 form-group ">
+         <label class="form-label control-label" for="dob"
+            >Date of Birth</label
+         >
+         <input class="form-control" type="date" id="dob" name="dob"  />
+      </div>
+
+      <div class="col-md-4 form-group ">
+         <label class="form-label control-label" for="age">Age</label>
+         <input
+            class="form-control"
+            type="number"
+            id="age"
+            name="age"
+            placeholder="age"
+            readonly
+            
+         />
+      </div>
+
+      <div class="col-md-4 form-group ">
+         <label class="form-label control-label" for="gender">Gender</label>
+         <select class="form-select" name="gender" >
+            <option value="" selected>--Select your Gender--</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="others">Others</option>
+         </select>
+      </div>
+
+      <div class="col-md-4 form-group ">
+         <label class="form-label control-label" for="blood_group"
+            >Blood Group</label
+         >
+         <select class="form-select" name="blood_group" >
+            <option value="" selected>--Select your Blood Group--</option>
+            <option value="ap">A+</option>
+            <option value="an">A-</option>
+            <option value="bp">B+</option>
+            <option value="bn">B-</option>
+            <option value="op">O+</option>
+            <option value="on">O-</option>
+            <option value="abp">AB+</option>
+            <option value="abn">AB-</option>
+         </select>
+      </div>
+
+      <div class="col-md-4 form-group ">
+         <label class="form-label control-label" for="mobile_num"
+            >Mobile Number</label
+         >
+         <input
+            class="form-control"
+            type="text"
+            name="mobile_num"
+            placeholder="Enter your mobile number"
+            
+         />
+      </div>
+
+      <div class="col-md-4 form-group ">
+         <label class="form-label control-label" for="aadhaar"
+            >Aadhaar Number</label
+         >
+         <input
+            class="form-control"
+            type="text"
+            name="aadhaar"
+            placeholder="Enter your Aadhaar number"
+            
+         />
+      </div>
+
+      <div class="col-md-4 form-group ">
+         <label class="form-label control-label" for="mailid">Email</label>
+         <input
+            class="form-control"
+            type="email"
+            name="email"
+            placeholder="Enter your email address"
+            
+         />
+      </div>
+
+      <div class="col-md-4 form-group ">
+         <label class="form-label control-label" for="password"
+            >Create a Password</label
+         >
+         <input
+            class="form-control"
+            type="password"
+            name="password1"
+            placeholder="Create your own password"
+            
+         />
+      </div>
+
+      <div class="col-md-4 form-group ">
+         <label class="form-label control-label" for="cpassword"
+            >Confirm your Password</label
+         >
+         <input
+            class="form-control"
+            type="password"
+            name="password2"
+            placeholder="Enter your password again"
+            
+         />
+      </div>
+
+      <div class="col-8 form-group ">
+         <label class="form-label control-label" for="addr_line"
+            >Address Line</label
+         >
+         <input
+            class="form-control"
+            type="text"
+            id="addr_line" name="addr_line"
+            placeholder="Address Line 1"
+            
+         />
+      </div>
+
+      <div class="col-md-4 form-group ">
+         <label class="form-label control-label" for="city">City</label>
+         <input
+            class="form-control"
+            type="text"
+            name="city"
+            
+            placeholder="city"
+         />
+      </div>
+
+      <div class="col-md-4 form-group ">
+         <label class="form-label control-label" for="district"
+            >District</label
+         >
+         <input
+            class="form-control"
+            type="text"
+            name="district"
+            placeholder="district"
+            
+         />
+      </div>
+
+      <div class="col-md-4 form-group ">
+         <label class="form-label control-label" for="state">State</label>
+         <input
+            class="form-control"
+            type="text"
+            name="state"
+            
+            placeholder="state"
+         />
+      </div>
+
+      <div class="col-md-4 form-group ">
+         <label class="form-label control-label" for="pincode">Pincode</label>
+         <input
+            class="form-control"
+            type="text"
+            name="pincode"
+            placeholder="pincode"
+            
+         />
+      </div>
+
+      <div class="col-md-6">
+         <label class="form-label" for="medical_history"
+            >Medical History(if any)</label
+         >
+         <textarea
+            name="medical_history"
+            class="form-control form-textarea"
+            placeholder="Any chronic conditions or illness, allergies, medications taken and recent surgeries."
+         ></textarea>
+      </div>
+
+      <div class="col-md-6">
+         <label class="form-label" for="social_history"
+            >Social History(if any)</label
+         >
+         <textarea
+            name="social_history"
+            class="form-control form-textarea"
+            placeholder="Lifestyle habits such as smoking, drinking, drug use, etc."
+         ></textarea>
+      </div>
+
+      <div class="form-div col-md-6 form-group ">
+         <label class="form-label control-label" for="organs"
+            >Organs I wish to donate :</label
+         ><br />
+         <div class="form-check form-check-inline">
+            <input
+               class="form-check-input"
+               type="checkbox"
+               id="select-all"
+               name="check-all"
+               value="allorgans"
+            />
+            <label class="form-check-label" for="organ">All Organs</label>
+         </div>
+         <div class="form-check form-check-inline">
+            <input
+               class="form-check-input"
+               type="checkbox"   
+               id="kidney"
+               name="organ"
+               value="kidney"
+            />
+            <label class="form-check-label" for="kidney">Kidney</label>
+         </div>
+         <div class="form-check form-check-inline">
+            <input
+               class="form-check-input"
+               type="checkbox"
+               id="liver"
+               name="organ"
+               value="liver"
+            />
+            <label class="form-check-label" for="liver">Liver</label>
+         </div>
+         <br />
+         <div class="form-check form-check-inline">
+            <input
+               class="form-check-input"
+               type="checkbox"
+               id="lungs"
+               name="organ"
+               value="lungs"
+            />
+            <label class="form-check-label" for="lungs">Lungs</label>
+         </div>
+         <div class="form-check form-check-inline">
+            <input
+               class="form-check-input"
+               type="checkbox"
+               id="pancreas"
+               name="organ"
+               value="pancreas"
+            />
+            <label class="form-check-label" for="pancreas">Pancreas</label>
+         </div>
+         <div class="form-check form-check-inline">
+            <input
+               class="form-check-input"
+               type="checkbox"
+               id="small_intestine"
+               name="organ"
+               value="small_intestine"
+            />
+            <label class="form-check-label" for="small_intestine"
+               >Small Intestine</label
+            >
+         </div>
+         
+      </div>
+
+      <div class="form-div col-md-6">
+         <label class="form-label" for="organs">Other donations :</label><br />
+         <div class="form-check form-check-inline">
+            <input
+               class="form-check-input"
+               type="checkbox"
+               id="blood"
+               name="blood"
+               value="blood"
+            />
+            <label class="form-check-label" for="blood">Blood</label>
+         </div>
+      </div>
+
+      <hr />
+
+      <div class="col-12">
+         <div class="form-check">
+            <input
+               class="form-check-input"
+               type="checkbox"
+               value="check"
+               id="check-1"            
+               name="agreement"
+               
+            />
+            <label class="form-check-label" for="check-1"
+               >I agree to the terms and conditions</label
+            >
+         </div>
+      </div>
+
+      <div class="form-button">
+         <input
+            class="btn btn-primary"
+            type="submit"
+            value="Submit"
+            id="submit_btn"
+         />
+      </div>
+   </form>
+</div>
+{% endblock %}
+
+{% block jslink %} 
+   <script src="{% static 'organdonation/js/age.js' %}"></script>
+   <script src="{% static 'organdonation/js/selectall.js' %}"></script>
+{% endblock %}

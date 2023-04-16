@@ -1,0 +1,18 @@
+{% extends 'organdonation/base.html' %}
+
+{% load static %}
+
+
+{% block title %} Organ Donation | Recipient Home {% endblock  %}
+
+
+
+{% block logoutlink %} {% url 'rlogout' %} {% endblock  %}
+
+
+
+{% block body %} 
+   {% if user.is_authenticated %}
+      <h1>Welcome {{ user.first_name }}</h1>
+   {% endif %}
+{% endblock %}

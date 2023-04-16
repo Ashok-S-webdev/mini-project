@@ -1,0 +1,39 @@
+{% load static %}
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{% block title %} {% endblock %}</title>
+		{% block csslink %} {% endblock %}
+		<link
+			rel="stylesheet"
+			href="{% static 'organdonation/bootstrap/css/bootstrap.min.css' %}"
+		/>
+		<script src="{% static 'organdonation/bootstrap/js/bootstrap.min.js' %}"></script>
+		<script src="{% static 'organdonation/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&family=Outfit:wght@200;300;400;500;600&family=Poppins:wght@300;400;500;600&family=Ubuntu:wght@300;400;500&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body>
+		<div class="position-absolute container-fluid">
+		{% if messages %}
+				{% for message in messages %}
+				<div class="alert alert-warning alert-dismissible fade show" role="alert">
+					<strong>{{ message }}
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				 </div>
+				{% endfor %}
+			{% endif %}
+		</div>
+      {% block body %}
+
+      {% endblock %}
+      {% block jslink %}  {% endblock %}
+	</body>
+</html>
