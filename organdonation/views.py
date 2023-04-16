@@ -8,8 +8,7 @@ from .models import User, Recipient, Donor
 # Create your views here.
 
 def index(request):
-    users = User.objects.all()
-    return render(request, 'organdonation/index.html', {users:users})
+    return render(request, 'organdonation/index.html')
 
 
 def dregister(request):
