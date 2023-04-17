@@ -11,9 +11,11 @@ class User(AbstractUser):
    is_recipient = models.BooleanField("Is Recipient", default=False)
 
 
-class Organs(models.Model):
+class Organ(models.Model):
    name = models.CharField(max_length=20)
-   is_checked = models.BooleanField(default=True)
+
+   def __str__(self):
+      return self.name
 
 
 class Recipient(models.Model):
@@ -26,7 +28,7 @@ class Recipient(models.Model):
    gender = models.CharField(max_length=10)
    mobile = models.CharField(max_length=10)
    blood_group = models.CharField(max_length=3)
-   aadhaar = models.CharField(max_length=12)
+   aadhaar = models.CharField(max_length=16)
    addr_line = models.CharField(max_length=100)
    city = models.CharField(max_length=60)
    district = models.CharField(null=True ,max_length=60)
@@ -51,13 +53,13 @@ class Donor(models.Model):
    gender = models.CharField(max_length=10)
    mobile = models.CharField(max_length=10)
    blood_group = models.CharField(max_length=3)
-   aadhaar = models.CharField(max_length=12)
+   aadhaar = models.CharField(max_length=16)
    addr_line = models.CharField(max_length=100)
    city = models.CharField(max_length=60)
    district = models.CharField(null=True, max_length=60)
    state = models.CharField(max_length=60)
    pincode = models.CharField(max_length=6)
-   organ = models.ManyToManyField(Organs, related_name='organ')
+   organs = models.ManyToManyField(Organ)
    medical_history = models.TextField(max_length=200)
    social_history = models.TextField(max_length=200)
 

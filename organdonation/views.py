@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
-from .models import User, Recipient, Donor
+from .models import User, Recipient, Donor, Organ
 from django.contrib.auth.decorators import login_required
 from django.views import generic
 
@@ -11,6 +11,7 @@ from django.views import generic
 
 
 def index(request):
+
     return render(request, 'organdonation/index.html')
 
 
@@ -34,6 +35,8 @@ def dregister(request):
         pincode = request.POST['pincode']
         social_history = request.POST['social_history']
         medical_history = request.POST['medical_history']
+        form_organs = request.POST.getlist('organ')
+        def_organs = ['kidney', 'liver', 'lungs', 'pancreas', 'small_intestine', 'blood']
         if password1 == password2:
             if User.objects.filter(email=email).exists():
                 messages.success(request, "This email is already registered with an account")
@@ -61,8 +64,13 @@ def dregister(request):
                 donor.social_history = social_history
                 donor.medical_history = medical_history
                 donor.save()
+                for organ in form_organs:
+                    if organ in def_organs:
+                        organ = Organ.objects.get(name = organ)
+                        donor.organs.add(organ)
+                    
                 messages.success(request, "Your account has been created successfully.")
-                return redirect('dlogin')
+                return redirect('login')
 
         else:
             messages.success(request, "Password and Confirm Password doesn't match.")
@@ -94,13 +102,6 @@ def rregister(request):
         medical_history = request.POST['medical_history']
         if password1 == password2:
             if User.objects.filter(email=email).exists():
-                person = User.objects.filter(email=email)
-                for field in person:
-                    temp_is_donor = field.is_donor
-                    temp_is_recipient = field.is_recipient
-                
-                if temp_is_recipient == True:
-                    pass
                 messages.success(request, "This email is already registered with an account")
                 return redirect('rregister')
             else:
@@ -128,7 +129,7 @@ def rregister(request):
                 recipient.medical_history = medical_history
                 recipient.save()
                 messages.success(request, "Your account has been created successfully.")
-                return redirect('rlogin')
+                return redirect('login')
                 pass
 
         else:
@@ -149,7 +150,7 @@ def userlogin(request):
             return redirect('home')
         else:
             messages.success(request, 'Not valid Credentials!')
-            return redirect('dlogin')
+            return redirect('login')
     else:
         return render(request, 'organdonation/login.html', {})
 
@@ -163,7 +164,7 @@ def userlogout(request):
 @login_required(login_url='dlogin')
 def home(request):
     current_user = request.user
-    print(current_user.donor.first_name)
-    return render(request, 'organdonation/index.html', {'user': current_user})
+    organlist = (current_user.donor.organs.all())
+    return render(request, 'organdonation/index.html', {'user': current_user, 'organslist': organlist})
 
 

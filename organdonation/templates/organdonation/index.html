@@ -38,7 +38,17 @@
 						<li class="list-group-item">District : <strong>{{ user.donor.district }}</strong></li>
 						<li class="list-group-item">State : <strong>{{ user.donor.state }}</strong></li>
 						<li class="list-group-item">Pincode : <strong>{{ user.donor.pincode }}</strong></li>
-						<li class="list-group-item">Organ : <strong>{{ user.donor.organ }}</strong></li>
+						<li class="list-group-item">Organs willing to donate : <br>
+							<table class="table table-borderless w-auto">
+								<thead>
+									<tr>
+											{% for organs in organslist %}
+											<th><ul>{{  organs | capfirst  }}</ul></th>
+											{% endfor %}
+										</tr>
+									</thead>
+								</table>
+						</li>
 						<li class="list-group-item">Medical History : <strong>{{ user.donor.medical_history }}</strong></li>
 						<li class="list-group-item">Social History : <strong>{{ user.donor.social_history }}</strong></li>
 					</ul>
