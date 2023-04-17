@@ -146,7 +146,6 @@ def userlogin(request):
         user = authenticate(request, email=email, password = password)
         if user is not None:
             login(request, user)
-            messages.success(request, 'You have been logged in!')
             return redirect('home')
         else:
             messages.success(request, 'Not valid Credentials!')
@@ -164,6 +163,7 @@ def userlogout(request):
 @login_required(login_url='dlogin')
 def home(request):
     current_user = request.user
+    print(current_user.donor.first_name)
     return render(request, 'organdonation/index.html', {'user': current_user})
 
 
