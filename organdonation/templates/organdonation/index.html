@@ -30,7 +30,26 @@
 						<li class="list-group-item">Date of Birth : <strong>{{ user.donor.dob }}</strong></li>
 						<li class="list-group-item">Age : <strong>{{ user.donor.age }}</strong></li>
 						<li class="list-group-item">Gender : <strong>{{ user.donor.gender }}</strong></li>
-						<li class="list-group-item">Blood Group : <strong>{{ user.blood_group }}</strong></li>
+						<li class="list-group-item">Blood Group : 
+							<strong>
+							{% if user.donor.blood_group == 'bp' %}
+								B+
+							{% elif user.donor.blood_group == 'bn' %}
+								B-
+							{% elif user.donor.blood_group == 'an' %}
+								A-
+							{% elif user.donor.blood_group == 'ap' %}
+								A+
+							{% elif user.donor.blood_group == 'op' %}
+								O+
+							{% elif user.donor.blood_group == 'on' %}
+								O-
+							{% elif user.donor.blood_group == 'abp' %}
+								AB+
+							{% elif user.donor.blood_group == 'abn' %}
+								AB-
+							{% endif %}
+						</strong></li>
 						<li class="list-group-item">Mobile No : <strong>{{ user.donor.mobile }}</strong></li>
 						<li class="list-group-item">Aadhaar No : <strong>{{ user.donor.aadhaar }}</strong></li>
 						<li class="list-group-item">Address Line : <strong>{{ user.donor.addr_line }}</strong></li>
@@ -56,7 +75,25 @@
 			</div>
 		</div>
 	{% elif user.is_authenticated and user.is_recipient %}
-		<h1>Welcome {{ user.first_name }}</h1>
+		<div class="container">
+			<h1 class="my-5">Available Donors</h1>
+			<div class="row row-cols-1 row-cols-md-2 g-4">
+				{% for donor in donorslist %}
+				<div class="col">
+					<div class="card h-100">
+					  <div class="card-body">
+						 <h5 class="card-title fs-2">{{ donor.first_name}} {{ donor.last_name }}</h5>
+						 <p class="card-text">gender: {{ donor.gender }}</p>
+						 <p class="card-text">age: {{ donor.age }}</p>
+						 <p class="card-text">Address: {{ donor.addr_line }}, {{ donor.city }}</p>
+						 <p class="card-text">District: {{ donor.district }} -  {{ donor.pincode }}</p>
+						 <p class="card-text">Medical History: {{ donor.medical_history }}</p>
+						 <p class="card-text">Social History: {{ donor.social_history }}</p>
+						 <a href="#" class="btn btn-secondary">View Details</a>
+					  </div>
+					</div>
+				 </div>
+				{% endfor %}
 	{% else %}
 		<div class="container text-center quote">Life is a gift, Pass it on</div>
 		<div class="container">

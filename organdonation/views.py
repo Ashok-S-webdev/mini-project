@@ -161,10 +161,17 @@ def userlogout(request):
     return redirect('index')
 
 
-@login_required(login_url='dlogin')
+@login_required(login_url='login')
 def home(request):
     current_user = request.user
-    organlist = (current_user.donor.organs.all())
-    return render(request, 'organdonation/index.html', {'user': current_user, 'organslist': organlist})
-
+    if current_user.is_authenticated and current_user.is_donor:
+        organlist = (current_user.donor.organs.all())
+        return render(request, 'organdonation/index.html', {'user': current_user, 'organslist': organlist})
+    elif current_user.is_authenticated and current_user.is_recipient:
+        donorlist = [Donor.objects.get(blood_group = current_user.recipient.blood_group)]
+        print(current_user.recipient.blood_group)
+        print(donorlist)
+        xyz = Organ.objects.filter(donor = current_user.id)
+        print(xyz)
+        return render(request, 'organdonation/index.html', {'user': current_user, 'donorslist': donorlist})
 
