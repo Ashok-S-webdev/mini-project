@@ -171,7 +171,8 @@ def home(request):
         donorlist = [Donor.objects.get(blood_group = current_user.recipient.blood_group)]
         print(current_user.recipient.blood_group)
         print(donorlist)
-        xyz = Organ.objects.filter(donor = current_user.id)
-        print(xyz)
+        xyz = Organ.objects.get(name = current_user.recipient.organ_needed)
+        print(xyz.id)
+        # donors_list = Donor.objects.get()
         return render(request, 'organdonation/index.html', {'user': current_user, 'donorslist': donorlist})
 
