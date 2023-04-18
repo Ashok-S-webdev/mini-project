@@ -12,8 +12,11 @@ from django.views import generic
 
 def index(request):
     user = request.user
-    if user.is_authenticated:
-        return redirect('home')
+    if user.is_authenticated and user.is_donor:
+        return redirect('donorhome')
+    elif user.is_authenticated and user.is_recipient:
+        return redirect('recipienthome')
+    
     return render(request, 'organdonation/index.html')
 
 
@@ -149,7 +152,14 @@ def userlogin(request):
         user = authenticate(request, email=email, password = password)
         if user is not None:
             login(request, user)
-            return redirect('home')
+            if user.is_donor:
+                return redirect('donorhome')
+            elif user.is_recipient:
+                return redirect('recipienthome')
+            else:
+                messages.success(request, 'Error logging in.')
+                logout(request)
+                return redirect('login')
         else:
             messages.success(request, 'Not valid Credentials!')
             return redirect('login')
@@ -164,27 +174,44 @@ def userlogout(request):
 
 
 @login_required(login_url='login')
-def home(request):
+def donorhome(request):
     current_user = request.user
     if current_user.is_authenticated and current_user.is_donor:
         organlist = (current_user.donor.organs.all())
-        return render(request, 'organdonation/index.html', {'user': current_user, 'organslist': organlist})
-    elif current_user.is_authenticated and current_user.is_recipient:
+        return render(request, 'organdonation/donorhome.html', {'user': current_user, 'organslist': organlist})
+    
+
+@login_required(login_url='login')
+def recipienthome(request):
+    current_user = request.user
+    if current_user.is_authenticated and current_user.is_recipient:
         donorlist = (Donor.objects.all())
         organ = Organ.objects.get(name = current_user.recipient.organ_needed)
         donormatchlist = []
         for donor in donorlist:
             if donor.blood_group == current_user.recipient.blood_group:  
-                donating_organs = (donor.organs.all())   
-                for d_organ in donating_organs:
-                    if d_organ == organ:
-                        donormatchlist.append(donor)
-                    else:
-                        pass    
+                donormatchlist.append(donor)
             else:
                 pass
         blooddonormatch = tuple(donormatchlist)
-        
-        print(donormatchlist)
-        return render(request, 'organdonation/index.html', {'user': current_user, 'donorslist': blooddonormatch})
 
+        return render(request, 'organdonation/recipienthome.html', {'user': current_user, 'donorslist': blooddonormatch})
+    
+
+
+def recipienthomeorganview(request):
+    current_user = request.user
+    if current_user.is_authenticated and current_user.is_recipient:
+        donorlist = (Donor.objects.all())
+        organ = Organ.objects.get(name = current_user.recipient.organ_needed)
+        organmatchlist = []
+        for donor in donorlist: 
+            donating_organs = (donor.organs.all())   
+            for d_organ in donating_organs:
+                if d_organ == organ:
+                    organmatchlist.append(donor)
+                else:
+                    pass
+        print(organmatchlist)
+        organdonormatch = tuple(organmatchlist)
+        return render(request, 'organdonation/recipienthome.html',{'organview': True, 'donorslist': organdonormatch})

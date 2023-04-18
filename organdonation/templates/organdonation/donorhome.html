@@ -1,0 +1,71 @@
+{% extends 'organdonation/base.html' %}
+
+{% load static %}
+
+{% block title %} Donor Profile | Organ Donation {% endblock %}
+
+{% block csslink%}
+<link rel="stylesheet" href="{% static 'organdonation/css/style1.css' %}" />
+{%endblock csslink %} 
+
+
+{% block body %}
+<div class="container-fluid my-5">
+   <div class="row">
+      <div class="col-md-12">
+         <h1>Name : {{user.first_name}} {{user.last_name}} {{ user.gender }}</h1>
+         <hr>
+      </div>
+   </div>
+   <div class="row">
+      <div class="col-md-8 offset-md-1">
+         <ul class="list-group list-group-flush">
+            <li class="list-group-item">Email : <strong>{{ user.email }}</strong></li>
+            <li class="list-group-item">Date of Birth : <strong>{{ user.donor.dob }}</strong></li>
+            <li class="list-group-item">Age : <strong>{{ user.donor.age }}</strong></li>
+            <li class="list-group-item">Gender : <strong>{{ user.donor.gender }}</strong></li>
+            <li class="list-group-item">Blood Group : 
+               <strong>
+               {% if user.donor.blood_group == 'bp' %}
+                  B+
+               {% elif user.donor.blood_group == 'bn' %}
+                  B-
+               {% elif user.donor.blood_group == 'an' %}
+                  A-
+               {% elif user.donor.blood_group == 'ap' %}
+                  A+
+               {% elif user.donor.blood_group == 'op' %}
+                  O+
+               {% elif user.donor.blood_group == 'on' %}
+                  O-
+               {% elif user.donor.blood_group == 'abp' %}
+                  AB+
+               {% elif user.donor.blood_group == 'abn' %}
+                  AB-
+               {% endif %}
+            </strong></li>
+            <li class="list-group-item">Mobile No : <strong>{{ user.donor.mobile }}</strong></li>
+            <li class="list-group-item">Aadhaar No : <strong>{{ user.donor.aadhaar }}</strong></li>
+            <li class="list-group-item">Address Line : <strong>{{ user.donor.addr_line }}</strong></li>
+            <li class="list-group-item">City : <strong>{{ user.donor.city }}</strong></li>
+            <li class="list-group-item">District : <strong>{{ user.donor.district }}</strong></li>
+            <li class="list-group-item">State : <strong>{{ user.donor.state }}</strong></li>
+            <li class="list-group-item">Pincode : <strong>{{ user.donor.pincode }}</strong></li>
+            <li class="list-group-item">Organs willing to donate : <br>
+               <table class="table table-borderless w-auto">
+                  <thead>
+                     <tr>
+                           {% for organs in organslist %}
+                           <th><ul>{{  organs | capfirst  }}</ul></th>
+                           {% endfor %}
+                        </tr>
+                     </thead>
+                  </table>
+            </li>
+            <li class="list-group-item">Medical History : <strong>{{ user.donor.medical_history }}</strong></li>
+            <li class="list-group-item">Social History : <strong>{{ user.donor.social_history }}</strong></li>
+         </ul>
+      </div>
+   </div>
+</div>
+{% endblock %}
