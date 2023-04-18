@@ -11,7 +11,9 @@ from django.views import generic
 
 
 def index(request):
-
+    user = request.user
+    if user.is_authenticated:
+        return redirect('home')
     return render(request, 'organdonation/index.html')
 
 
@@ -168,11 +170,21 @@ def home(request):
         organlist = (current_user.donor.organs.all())
         return render(request, 'organdonation/index.html', {'user': current_user, 'organslist': organlist})
     elif current_user.is_authenticated and current_user.is_recipient:
-        donorlist = [Donor.objects.get(blood_group = current_user.recipient.blood_group)]
-        print(current_user.recipient.blood_group)
-        print(donorlist)
-        xyz = Organ.objects.get(name = current_user.recipient.organ_needed)
-        print(xyz.id)
-        # donors_list = Donor.objects.get()
-        return render(request, 'organdonation/index.html', {'user': current_user, 'donorslist': donorlist})
+        donorlist = (Donor.objects.all())
+        organ = Organ.objects.get(name = current_user.recipient.organ_needed)
+        donormatchlist = []
+        for donor in donorlist:
+            if donor.blood_group == current_user.recipient.blood_group:  
+                donating_organs = (donor.organs.all())   
+                for d_organ in donating_organs:
+                    if d_organ == organ:
+                        donormatchlist.append(donor)
+                    else:
+                        pass    
+            else:
+                pass
+        blooddonormatch = tuple(donormatchlist)
+        
+        print(donormatchlist)
+        return render(request, 'organdonation/index.html', {'user': current_user, 'donorslist': blooddonormatch})
 
