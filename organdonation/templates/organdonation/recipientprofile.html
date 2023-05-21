@@ -1,0 +1,61 @@
+{% extends 'organdonation/base.html' %}
+
+{% load static %}
+
+{% block title %} Recipient Profile | Organ Donation {% endblock %}
+
+{% block csslink%}
+<link rel="stylesheet" href="{% static 'organdonation/css/style1.css' %}" />
+{%endblock csslink %} 
+
+
+{% block body %}
+<div class="container-fluid my-5">
+   <div class="row">
+      <div class="col-md-12">
+         <h1>Name : {{user.first_name}} {{user.last_name}} {{ user.gender }}</h1>
+         <hr>
+      </div>
+   </div>
+   <div class="row">
+      <div class="col-md-8 offset-md-1">
+         <ul class="list-group list-group-flush">
+            <li class="list-group-item">Email : <strong>{{ user.email }}</strong></li>
+            <li class="list-group-item">Date of Birth : <strong>{{ user.recipient.dob }}</strong></li>
+            <li class="list-group-item">Age : <strong>{{ user.recipient.age }}</strong></li>
+            <li class="list-group-item">Gender : <strong>{{ user.recipient.gender }}</strong></li>
+            <li class="list-group-item">Blood Group : 
+               <strong>
+               {% if user.recipient.blood_group == 'bp' %}
+                  B+
+               {% elif user.recipient.blood_group == 'bn' %}
+                  B-
+               {% elif user.recipient.blood_group == 'an' %}
+                  A-
+               {% elif user.recipient.blood_group == 'ap' %}
+                  A+
+               {% elif user.recipient.blood_group == 'op' %}
+                  O+
+               {% elif user.recipient.blood_group == 'on' %}
+                  O-
+               {% elif user.recipient.blood_group == 'abp' %}
+                  AB+
+               {% elif user.recipient.blood_group == 'abn' %}
+                  AB-
+               {% endif %}
+            </strong></li>
+            <li class="list-group-item">Mobile No : <strong>{{ user.recipient.mobile }}</strong></li>
+            <li class="list-group-item">Aadhaar No : <strong>{{ user.recipient.aadhaar }}</strong></li>
+            <li class="list-group-item">Address Line : <strong>{{ user.recipient.addr_line }}</strong></li>
+            <li class="list-group-item">City : <strong>{{ user.recipient.city }}</strong></li>
+            <li class="list-group-item">District : <strong>{{ user.recipient.district }}</strong></li>
+            <li class="list-group-item">State : <strong>{{ user.recipient.state }}</strong></li>
+            <li class="list-group-item">Pincode : <strong>{{ user.recipient.pincode }}</strong></li>
+            <li class="list-group-item">Organ required for transplantation : <strong>{{ user.recipient.organ_needed | capfirst}}</strong></li>
+            <li class="list-group-item">Medical Condition : <strong>{{ user.recipient.medical_condition }}</strong></li>
+            <li class="list-group-item">Medical History : <strong>{{ user.recipient.medical_history }}</strong></li>
+         </ul>
+      </div>
+   </div>
+</div>
+{% endblock %}

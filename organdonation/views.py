@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
 from .models import User, Recipient, Donor, Organ
 from django.contrib.auth.decorators import login_required
 
@@ -72,7 +73,19 @@ def dregister(request):
                     if organ in def_organs:
                         organ = Organ.objects.get(name = organ)
                         donor.organs.add(organ)
-                    
+                send_mail(
+                    'Registration Successful',
+                    '''Thank you for registering with us.
+                    Congratulations! ''' + donor.first_name + " " + donor.last_name + '''. 
+                    You are now a registered donor.
+                    You can now login to your account and update your profile.
+                    Thank you for your support.
+                    Regards,
+                    Organ Donation Team''',
+                    'organdonation6@gmail.com',
+                    [donor.email],
+                    fail_silently=False,
+                )
                 messages.success(request, "Your account has been created successfully.")
                 return redirect('login')
 
@@ -132,6 +145,18 @@ def rregister(request):
                 recipient.medical_condition = medical_condition
                 recipient.medical_history = medical_history
                 recipient.save()
+
+                send_mail(
+                    'Registration Successful',
+                    '''Thank you for registering with us, ''' + recipient.first_name + recipient.last_name + '''. You are now a registered recipient.
+                    You can now login to your account and search for the available donors.
+                    Thank you for your support.
+                    Regards,
+                    Organ Donation Team''',
+                    'organdonation6@gmail.com',
+                    [recipient.email],
+                    fail_silently=False,
+                )
                 messages.success(request, "Your account has been created successfully.")
                 return redirect('login')
                 pass
@@ -154,7 +179,7 @@ def userlogin(request):
             if user.is_donor:
                 return redirect('donorhome')
             elif user.is_recipient:
-                return redirect('recipienthome')
+                return redirect('recipientprofile')
             else:
                 messages.success(request, 'Error logging in.')
                 logout(request)
@@ -181,36 +206,39 @@ def donorhome(request):
     
 
 @login_required(login_url='login')
-def recipienthome(request):
+def recipientprofileview(request):
+    current_user = request.user
+    if current_user.is_authenticated and current_user.is_recipient:
+        return render(request, 'organdonation/recipientprofile.html', {'user': current_user})
+
+
+
+@login_required(login_url='login')
+def recipientdonorsearch(request):
     current_user = request.user
     if current_user.is_authenticated and current_user.is_recipient:
         donorlist = (Donor.objects.all())
-        organ = Organ.objects.get(name = current_user.recipient.organ_needed)
-        donormatchlist = []
-        for donor in donorlist:
-            if donor.blood_group == current_user.recipient.blood_group:  
-                donormatchlist.append(donor)
-            else:
-                pass
-        blooddonormatch = tuple(donormatchlist)
-
-        return render(request, 'organdonation/recipienthome.html', {'user': current_user, 'donorslist': blooddonormatch})
+        print(donorlist)
+        if request.method == 'GET':
+            bg = request.GET.get('blood_group')
+            organ = request.GET.get('organ')
+            location = request.GET.get('location')
+            if bg != '' and organ != '' and location != '':
+                donorlist = donorlist.filter(blood_group = bg, organs__name = organ, district = location)
+            elif bg != '' and organ != '':
+                donorlist = donorlist.filter(blood_group = bg, organs__name = organ)
+            elif bg != '' and location != '':
+                donorlist = donorlist.filter(blood_group = bg, district = location)
+            elif organ != '' and location != '':
+                donorlist = donorlist.filter(organs__name = organ, district = location)
+            elif bg != '':
+                donorlist = donorlist.filter(blood_group = bg)
+            elif organ != '':
+                donorlist = donorlist.filter(organs__name = organ)
+            elif location != '':
+                donorlist = donorlist.filter(district = location)
+                print(donorlist)
+            
+        return render(request, 'organdonation/recipientdonorsearch.html', {'user': current_user, 'donorslist': donorlist})
     
 
-
-def recipienthomeorganview(request):
-    current_user = request.user
-    if current_user.is_authenticated and current_user.is_recipient:
-        donorlist = (Donor.objects.all())
-        organ = Organ.objects.get(name = current_user.recipient.organ_needed)
-        organmatchlist = []
-        for donor in donorlist: 
-            donating_organs = (donor.organs.all())   
-            for d_organ in donating_organs:
-                if d_organ == organ:
-                    organmatchlist.append(donor)
-                else:
-                    pass
-        print(organmatchlist)
-        organdonormatch = tuple(organmatchlist)
-        return render(request, 'organdonation/recipienthome.html',{'organview': True, 'donorslist': organdonormatch})

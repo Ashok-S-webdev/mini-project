@@ -1,0 +1,169 @@
+{% extends 'organdonation/base.html' %}
+
+{% load static %}
+
+{% block title %} Recipient Home | Organ Donation {% endblock %}
+
+{% block csslink%}
+<link rel="stylesheet" href="{% static 'organdonation/css/style1.css' %}" />
+{%endblock csslink %} 
+
+
+{% block body %}
+
+<div class="container"><br>
+   <nav class="navbar bg-light">
+      
+      <div class="container-fluid">
+         <a class="navbar-brand" href="#">Available Donors</a>
+
+         <form class="d-flex" role="search" method='get'>
+            <select class="form-control me-2" name="blood_group">
+               <option value="" selected>Blood Group</option>
+               <option value="ap">A+</option>
+               <option value="an">A-</option>
+               <option value="bp">B+</option>
+               <option value="bn">B-</option>
+               <option value="op">O+</option>
+               <option value="on">O-</option>
+               <option value="abp">AB+</option>
+               <option value="abn">AB-</option>
+            </select>
+            <select class="form-control me-2" name="organ">
+               <option value="" selected>Organ</option>
+               <option value="kidney">Kidney</option>
+               <option value="liver">Liver</option>
+               <option value="lungs">Lungs</option>
+               <option value="pancreas">Pancreas</option>
+               <option value="small_intestine">Small Intestine</option>
+            </select>  
+            <select class="form-control me-2" name="location" id="location">
+               <option value="" selected>Location</option>
+               <option value="Ariyalur">Ariyalur</option>
+               <option value="Chengalpattu">Chengalpattu</option>
+               <option value="Chennai">Chennai</option>
+               <option value="Coimbatore">Coimbatore</option>
+               <option value="Cuddalore">Cuddalore</option>
+               <option value="Dharmapuri">Dharmapuri</option>
+               <option value="Dindigul">Dindigul</option>
+               <option value="Erode">Erode</option>
+               <option value="Kallakurichi">Kallakurichi</option>
+               <option value="Kanchipuram">Kanchipuram</option>
+               <option value="Kanyakumari">Kanyakumari</option>
+               <option value="Karur">Karur</option>
+               <option value="Krishnagiri">Krishnagiri</option>
+               <option value="Madurai">Madurai</option>
+               <option value="Mayiladuthurai">Mayiladuthurai</option>
+               <option value="Nagapattinam">Nagapattinam</option>
+               <option value="Namakkal">Namakkal</option>
+               <option value="Nilgiris">Nilgiris</option>
+               <option value="Perambalur">Perambalur</option>
+               <option value="Pudukkottai">Pudukkottai</option>
+               <option value="Ramanathapuram">Ramanathapuram</option>
+               <option value="Ranipet">Ranipet</option>
+               <option value="Salem">Salem</option>
+               <option value="Sivagangai">Sivagangai</option>
+               <option value="Tenkasi">Tenkasi</option>
+               <option value="Thanjavur">Thanjavur</option>
+               <option value="Theni">Theni</option>
+               <option value="Thoothukudi">Thoothukudi</option>
+               <option value="Tiruchirappalli">Tiruchirappalli</option>
+               <option value="Tirunelveli">Tirunelveli</option>
+               <option value="Tirupathur">Tirupathur</option>
+               <option value="Tiruppur">Tiruppur</option>
+               <option value="Tiruvallur">Tiruvallur</option>
+               <option value="Tiruvannamalai">Tiruvannamalai</option>
+               <option value="Tiruvarur">Tiruvarur</option>
+               <option value="Vellore">Vellore</option>
+               <option value="Viluppuram">Viluppuram</option>
+               <option value="Virudhunagar">Virudhunagar</option>
+               </select>
+            <button class="btn btn-secondary" type="submit">Search</button>
+         </form>
+      </div>
+   </nav>
+   
+    {% block view %}
+   <div class="row row-cols-1 row-cols-md-2 g-4 my-5">
+         {% for donor in donorslist %}
+         <div class="col">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title fs-2">{{ donor.first_name}} {{ donor.last_name }}</h5>
+                <p class="card-text">gender: {{ donor.gender | capfirst }}</p>
+                <p class="card-text">age: {{ donor.age }}</p>						 
+                <p class="card-text">Blood Group:
+                  {% if donor.blood_group == 'bp' %}
+                     B+
+                  {% elif donor.blood_group == 'bn' %}
+                     B-
+                  {% elif donor.blood_group == 'an' %}
+                     A-
+                  {% elif donor.blood_group == 'ap' %}
+                     A+
+                  {% elif donor.blood_group == 'op' %}
+                     O+
+                  {% elif donor.blood_group == 'on' %}
+                     O-
+                  {% elif donor.blood_group == 'abp' %}
+                     AB+
+                  {% elif donor.blood_group == 'abn' %}
+                     AB-
+                  {% endif %}
+                </p>
+                <a type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal{{donor.user_id}}">View Details</a>
+              </div>
+            </div>
+         </div>          
+         
+         <div class="modal fade" id="exampleModal{{donor.user_id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                     <h5 class="card-title fs-2">{{ donor.first_name}} {{ donor.last_name }}</h5><br>
+                     <p class="card-text">gender: {{ donor.gender | capfirst }}</p>
+                     <p class="card-text">age: {{ donor.age }}</p>						 
+                     <p class="card-text">Blood Group:
+                        {% if donor.blood_group == 'bp' %}
+                           B+
+                        {% elif donor.blood_group == 'bn' %}
+                           B-
+                        {% elif donor.blood_group == 'an' %}
+                           A-
+                        {% elif donor.blood_group == 'ap' %}
+                           A+
+                        {% elif donor.blood_group == 'op' %}
+                           O+
+                        {% elif donor.blood_group == 'on' %}
+                           O-
+                        {% elif donor.blood_group == 'abp' %}
+                           AB+
+                        {% elif donor.blood_group == 'abn' %}
+                           AB-
+                        {% endif %}
+                     </p>
+                     <p class="card-text">Address: {{ donor.addr_line }}, {{ donor.city }}</p>
+                     <p class="card-text">District: {{ donor.district }} -  {{ donor.pincode }}</p>
+                     <p class="card-text">Medical History: {{ donor.medical_history }}</p>
+                     <p class="card-text">Social History: {{ donor.social_history }}</p>
+                  </div>
+                  <div class="modal-footer">
+                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                     <button type="button" class="btn btn-primary">Request</button>
+                  </div>
+               </div>
+            </div>
+         </div>
+         {% endfor %}     
+         <!-- Modal -->
+
+
+      
+   </div>
+    {% endblock  %}
+   
+{% endblock %}
