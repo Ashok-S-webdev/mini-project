@@ -4,7 +4,6 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from .models import User, Recipient, Donor, Organ
 from django.contrib.auth.decorators import login_required
-from django.views import generic
 
 
 # Create your views here.

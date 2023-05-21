@@ -1,0 +1,36 @@
+<div class="row row-cols-1 row-cols-md-2 g-4">
+   {% for donor in donorslist %}
+   <div class="col">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title fs-2">{{ donor.first_name}} {{ donor.last_name }}</h5>
+          <p class="card-text">gender: {{ donor.gender }}</p>
+          <p class="card-text">age: {{ donor.age }}</p>						 
+          <p class="card-text">Blood Group:
+            {% if donor.blood_group == 'bp' %}
+               B+
+            {% elif donor.blood_group == 'bn' %}
+               B-
+            {% elif donor.blood_group == 'an' %}
+               A-
+            {% elif donor.blood_group == 'ap' %}
+               A+
+            {% elif donor.blood_group == 'op' %}
+               O+
+            {% elif donor.blood_group == 'on' %}
+               O-
+            {% elif donor.blood_group == 'abp' %}
+               AB+
+            {% elif donor.blood_group == 'abn' %}
+               AB-
+            {% endif %}
+          </p>
+          <p class="card-text">Address: {{ donor.addr_line }}, {{ donor.city }}</p>
+          <p class="card-text">District: {{ donor.district }} -  {{ donor.pincode }}</p>
+          <p class="card-text">Medical History: {{ donor.medical_history }}</p>
+          <p class="card-text">Social History: {{ donor.social_history }}</p>
+          <a href="#" class="btn btn-secondary">View Details</a>
+        </div>
+      </div>
+   </div>
+   {% endfor %}
