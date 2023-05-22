@@ -1,0 +1,174 @@
+{% extends 'organdonation/base.html' %}
+
+{% load static %}
+
+{% block title %}Donor Requests | Organ Donation {% endblock %}
+
+{% block csslink%}
+<link rel="stylesheet" href="{% static 'organdonation/css/style1.css' %}" />
+{%endblock csslink %} 
+
+
+{% block body %}
+<div class="container">
+   <h1 class="mt-5">Pending Requests</h1><hr>
+   <div class="row row-cols-1 row-cols-md-2 g-4 my-5">
+      {% for sender in requested %}        
+         <div class="col">
+            <div class="card h-100">
+               <div class="card-body">
+                  <h5 class="card-title fs-2">{{ sender.recipient.first_name}} {{ sender.recipient.last_name }}</h5>
+                  <p class="card-text">Gender: {{ sender.recipient.gender | capfirst }}</p>
+                  <p class="card-text">Age: {{ sender.recipient.age }}</p>						 
+                  <p class="card-text">Blood Group:
+                     {% if sender.recipient.blood_group == 'bp' %}
+                        B+
+                     {% elif sender.recipient.blood_group == 'bn' %}
+                        B-
+                     {% elif sender.recipient.blood_group == 'an' %}
+                        A-
+                     {% elif sender.recipient.blood_group == 'ap' %}
+                        A+
+                     {% elif sender.recipient.blood_group == 'op' %}
+                        O+
+                     {% elif sender.recipient.blood_group == 'on' %}
+                        O-
+                     {% elif sender.recipient.blood_group == 'abp' %}
+                        AB+
+                     {% elif sender.recipient.blood_group == 'abn' %}
+                        AB-
+                     {% endif %}
+                  </p>
+                  <p class="card-text">Requested Organ: {{ sender.recipient.organ_needed | capfirst }}</p>
+                  <a type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal{{sender.recipient.user_id}}">View Details</a>
+               </div>
+            </div>
+         </div>  
+         <div class="modal fade" id="exampleModal{{sender.recipient.user_id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <h1 class="modal-title fs-5" id="exampleModalLabel">Details</h1>
+                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                     <h5 class="card-title fs-2">{{ sender.recipient.first_name}} {{ sender.recipient.last_name }}</h5><br>
+                     <p class="card-text">Gender: {{ sender.recipient.gender | capfirst }}</p>
+                     <p class="card-text">Age: {{ sender.recipient.age }}</p>						 
+                     <p class="card-text">Blood Group:
+                        {% if sender.recipient.blood_group == 'bp' %}
+                           B+
+                        {% elif sender.recipient.blood_group == 'bn' %}
+                           B-
+                        {% elif sender.recipient.blood_group == 'an' %}
+                           A-
+                        {% elif sender.recipient.blood_group == 'ap' %}
+                           A+
+                        {% elif sender.recipient.blood_group == 'op' %}
+                           O+
+                        {% elif sender.recipient.blood_group == 'on' %}
+                           O-
+                        {% elif sender.recipient.blood_group == 'abp' %}
+                           AB+
+                        {% elif sender.recipient.blood_group == 'abn' %}
+                           AB-
+                        {% endif %}
+                     </p>
+                     <p class="card-text">Requested Organ: {{ sender.recipient.organ_needed | capfirst }}</p>
+                     <p class="card-text">Address: {{ sender.recipient.addr_line }}, {{ sender.recipient.city }}</p>
+                     <p class="card-text">District: {{ sender.recipient.district }} -  {{ sender.recipient.pincode }}</p>
+                     <p class="card-text">Medical History: {{ sender.recipient.medical_history }}</p>
+                     <p class="card-text">Medical Condition: {{ sender.recipient.medical_condition }}</p>
+                  </div>
+                  <div class="modal-footer">
+                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                     {% comment %} <a href='#' type="button" class="btn btn-danger">Reject</a> {% endcomment %}
+                     <a href={% url 'donoracceptrequest' recipient_id=sender.recipient.user_id %} type="button" class="btn btn-success">Accept</a>
+                  </div>
+               </div>
+            </div>
+         </div>  
+         {% endfor %}
+   </div>  
+   <h1 class="mt-5">Accepted Requests</h1><hr>
+   <div class="row row-cols-1 row-cols-md-2 g-4 my-5">
+      {% for sender in accepted %}        
+         <div class="col">
+            <div class="card h-100">
+               <div class="card-body">
+                  <h5 class="card-title fs-2">{{ sender.recipient.first_name}} {{ sender.recipient.last_name }}</h5>
+                  <p class="card-text">gender: {{ sender.recipient.gender | capfirst }}</p>
+                  <p class="card-text">age: {{ sender.recipient.age }}</p>						 
+                  <p class="card-text">Blood Group:
+                     {% if sender.recipient.blood_group == 'bp' %}
+                        B+
+                     {% elif sender.recipient.blood_group == 'bn' %}
+                        B-
+                     {% elif sender.recipient.blood_group == 'an' %}
+                        A-
+                     {% elif sender.recipient.blood_group == 'ap' %}
+                        A+
+                     {% elif sender.recipient.blood_group == 'op' %}
+                        O+
+                     {% elif sender.recipient.blood_group == 'on' %}
+                        O-
+                     {% elif sender.recipient.blood_group == 'abp' %}
+                        AB+
+                     {% elif sender.recipient.blood_group == 'abn' %}
+                        AB-
+                     {% endif %}
+                  </p>
+                  <p class="card-text">Requested Organ: {{ sender.recipient.organ_needed | capfirst }}</p>
+                  <a type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal{{sender.recipient.user_id}}">View Details</a>
+               </div>
+            </div>
+         </div>  
+         <div class="modal fade" id="exampleModal{{sender.recipient.user_id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <h1 class="modal-title fs-5" id="exampleModalLabel">Details</h1>
+                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                     <h5 class="card-title fs-2">{{ sender.recipient.first_name}} {{ sender.recipient.last_name }}</h5><br>
+                     <p class="card-text">gender: {{ sender.recipient.gender | capfirst }}</p>
+                     <p class="card-text">age: {{ sender.recipient.age }}</p>						 
+                     <p class="card-text">Blood Group:
+                        {% if sender.recipient.blood_group == 'bp' %}
+                           B+
+                        {% elif sender.recipient.blood_group == 'bn' %}
+                           B-
+                        {% elif sender.recipient.blood_group == 'an' %}
+                           A-
+                        {% elif sender.recipient.blood_group == 'ap' %}
+                           A+
+                        {% elif sender.recipient.blood_group == 'op' %}
+                           O+
+                        {% elif sender.recipient.blood_group == 'on' %}
+                           O-
+                        {% elif sender.recipient.blood_group == 'abp' %}
+                           AB+
+                        {% elif sender.recipient.blood_group == 'abn' %}
+                           AB-
+                        {% endif %}
+                     </p>
+                     <p class="card-text">Email: {{ sender.recipient.email }}</p>	
+                     <p class="card-text">Mobile No: {{ sender.recipient.mobile }}</p>	
+                     <p class="card-text">Address: {{ sender.recipient.addr_line }}, {{ sender.recipient.city }}</p>
+                     <p class="card-text">District: {{ sender.recipient.district }} -  {{ sender.recipient.pincode }}</p>
+                     <p class="card-text">Requested Organ: {{ sender.recipient.organ_needed | capfirst }}</p>
+                     <p class="card-text">Medical History: {{ sender.recipient.medical_history }}</p>
+                     <p class="card-text">Medical Condition: {{ sender.recipient.medical_condition }}</p>
+                  </div>
+                  <div class="modal-footer">
+                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                     
+                  </div>
+               </div>
+            </div>
+         </div>  
+         {% endfor %}
+   </div>
+</div>
+{% endblock %}

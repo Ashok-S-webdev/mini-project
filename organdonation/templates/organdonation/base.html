@@ -5,6 +5,12 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+		<style>
+			.success-message {
+				z-index: 1000;
+			}
+		</style>
+
 		<title>{% block title %} {% endblock %}</title>
 		{% block csslink %} {% endblock %}
 		<link
@@ -45,7 +51,7 @@
 		
 		
 		{% if messages %}
-		<div class="position-absolute container-fluid">
+		<div class="position-absolute container-fluid success-message">
 				{% for message in messages %}
 				<div class="alert alert-warning alert-dismissible fade show" role="alert">
 					<strong>{{ message }}

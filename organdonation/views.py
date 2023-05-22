@@ -3,23 +3,28 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
-from .models import User, Recipient, Donor, Organ
+from .models import User, Recipient, Donor, Organ, Request
 from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
 
-
+# Home page view
 def index(request):
     user = request.user
     if user.is_authenticated and user.is_donor:
         return redirect('donorhome')
     elif user.is_authenticated and user.is_recipient:
         return redirect('recipienthome')
-    
-    return render(request, 'organdonation/index.html')
+    donor_count = Donor.objects.all().count()
+    recipient_count = Recipient.objects.all().count()
+    context = {
+        'donor_count': donor_count,
+        'recipient_count': recipient_count,
+    }
+    return render(request, 'organdonation/index.html', context)
 
-
+#Donor Registration View
 def dregister(request):
     if request.method == 'POST':
         first_name = request.POST['first_name']
@@ -95,7 +100,7 @@ def dregister(request):
     else:
         return render(request, 'organdonation/dregister.html')
 
-
+#Recipient Registration View
 def rregister(request):
     if request.method == 'POST':
         first_name = request.POST['first_name']
@@ -168,6 +173,9 @@ def rregister(request):
     else:
         return render(request, 'organdonation/rregister.html')
 
+
+
+#User Login View
 def userlogin(request):
     if request.method == 'POST':
         email = request.POST['email']
@@ -191,12 +199,16 @@ def userlogin(request):
         return render(request, 'organdonation/login.html', {})
 
 
+
+#User Logout View
 def userlogout(request):
     logout(request)
     messages.success(request, 'You have been logged out Successfully')
     return redirect('index')
 
 
+
+#Donor Profile View
 @login_required(login_url='login')
 def donorhome(request):
     current_user = request.user
@@ -205,6 +217,8 @@ def donorhome(request):
         return render(request, 'organdonation/donorhome.html', {'user': current_user, 'organslist': organlist})
     
 
+
+#Recipient Profile View
 @login_required(login_url='login')
 def recipientprofileview(request):
     current_user = request.user
@@ -213,12 +227,12 @@ def recipientprofileview(request):
 
 
 
+#Recipient Donor Filtraion View
 @login_required(login_url='login')
 def recipientdonorsearch(request):
     current_user = request.user
+    donorlist = (Donor.objects.all())
     if current_user.is_authenticated and current_user.is_recipient:
-        donorlist = (Donor.objects.all())
-        print(donorlist)
         if request.method == 'GET':
             bg = request.GET.get('blood_group')
             organ = request.GET.get('organ')
@@ -237,8 +251,76 @@ def recipientdonorsearch(request):
                 donorlist = donorlist.filter(organs__name = organ)
             elif location != '':
                 donorlist = donorlist.filter(district = location)
-                print(donorlist)
-            
-        return render(request, 'organdonation/recipientdonorsearch.html', {'user': current_user, 'donorslist': donorlist})
+    return render(request, 'organdonation/recipientdonorsearch.html', {'user': current_user, 'donorslist': donorlist})
     
 
+
+#Recipient send request to donor
+@login_required(login_url='login')
+def recipientsendrequest(request, donor_id):
+    current_user = request.user
+    if current_user.is_authenticated and current_user.is_recipient:
+        donor = Donor.objects.get(user_id = donor_id)
+        recipient = Recipient.objects.get(user_id = current_user.id)
+        recipient_request, created = Request.objects.get_or_create(donor = donor, recipient = recipient)
+        if created:
+            messages.success(request,'Request sent successfully.')
+            send_mail(
+            'Organ Request',
+            '''You have received a request for organ donation from ''' + current_user.recipient.first_name + ' ' + current_user.recipient.last_name + '''.''',
+            'organdonation6@gmail.com',
+            [donor.email],
+            fail_silently=False,
+        )
+            return redirect('recipientdonorsearch')
+        else:
+            messages.success(request,'Request already sent.')
+            return redirect('recipientdonorsearch')
+        
+    return render(request, 'organdonation/recipientdonorsearch.html')
+
+
+
+
+#Show requests to donor
+@login_required(login_url='login')
+def donorrequest(request):
+    current_user = request.user
+    if current_user.is_authenticated and current_user.is_donor:
+        recipient_request = Request.objects.filter(donor_id = current_user.donor.user_id, is_accepted = False)
+        accepted_request = Request.objects.filter(donor_id = current_user.donor.user_id, is_accepted = True)
+    return render(request, 'organdonation/donorrequest.html', {'requested': recipient_request, 'accepted' : accepted_request})
+
+
+
+#Show requests to recipient
+@login_required(login_url='login')
+def recipientrequest(request):
+    current_user = request.user
+    if current_user.is_authenticated and current_user.is_recipient:
+        requested_donors = Request.objects.filter(recipient_id = current_user.recipient.user_id, is_accepted = False)
+        accepted_donors = Request.objects.filter(recipient_id = current_user.recipient.user_id, is_accepted = True)
+
+
+    return render(request, 'organdonation/recipientrequest.html', {'requested': requested_donors, 'accepted' : accepted_donors})
+
+
+
+#Donor accept request
+@login_required(login_url='login')
+def donoracceptrequest(request, recipient_id):
+    current_user = request.user
+    if current_user.is_authenticated and current_user.is_donor:
+        recipient_request = Request.objects.get(donor_id = current_user.donor.user_id, recipient_id = recipient_id)
+        print(recipient_request)
+        recipient_request.is_accepted = True
+        recipient_request.save()
+        send_mail(
+            'Organ Request Accepted',
+            '''Your request for organ donation has been accepted by ''' + current_user.donor.first_name + ' ' + current_user.donor.last_name + '''. You can contact him/her at ''' + current_user.donor.email + ''' or call at ''' + current_user.donor.mobile + '''. ''',
+            'organdonation6@gmail.com',
+            [recipient_request.recipient.email],
+            fail_silently=False,
+        )
+        return redirect('donorrequest')
+    return render(request, 'organdonation/donorrequest.html')

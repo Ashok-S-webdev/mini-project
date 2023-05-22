@@ -5,7 +5,10 @@
 <div class="collapse navbar-collapse" id="navbarNavDropdown">
    <ul class="navbar-nav nav-fill ms-auto">
       <li class="nav-item">
-         <a class="nav-link active" aria-current="page" href="{% url 'donorhome' %}">Profile</a>
+         <a class="nav-link {% if request.resolver_match.url_name == 'donorhome' %} active {% endif %}" aria-current="page" href="{% url 'donorhome' %}">Profile</a>
+      </li>
+      <li class="nav-item">
+         <a class="nav-link {% if request.resolver_match.url_name == 'donorrequest' %} active {% endif %}" href={% url 'donorrequest'%}>Requests</a>
       </li>
       <li class="nav-item">
          <a class="nav-link" href={% url 'userlogout'%}>Logout</a>
@@ -24,6 +27,9 @@
       </li>
       <li class="nav-item">
          <a class="nav-link {% if request.resolver_match.url_name == 'recipientdonorsearch' %} active {% endif %}" aria-current="page" href={% url 'recipientdonorsearch' %}>Donors</a>
+      </li>
+      <li class="nav-item">
+         <a class="nav-link {% if request.resolver_match.url_name == 'recipientrequest' %} active {% endif %}" aria-current="page" href={% url 'recipientrequest' %}>Requests</a>
       </li>
       <li class="nav-item">
          <a class="nav-link" href={% url 'userlogout' %}>Logout</a>

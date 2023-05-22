@@ -90,8 +90,8 @@
             <div class="card h-100">
               <div class="card-body">
                 <h5 class="card-title fs-2">{{ donor.first_name}} {{ donor.last_name }}</h5>
-                <p class="card-text">gender: {{ donor.gender | capfirst }}</p>
-                <p class="card-text">age: {{ donor.age }}</p>						 
+                <p class="card-text">Gender: {{ donor.gender | capfirst }}</p>
+                <p class="card-text">Age: {{ donor.age }}</p>						 
                 <p class="card-text">Blood Group:
                   {% if donor.blood_group == 'bp' %}
                      B+
@@ -120,13 +120,13 @@
             <div class="modal-dialog modal-lg modal-dialog-centered">
                <div class="modal-content">
                   <div class="modal-header">
-                     <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                     <h1 class="modal-title fs-5" id="exampleModalLabel">Details</h1>
                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
                      <h5 class="card-title fs-2">{{ donor.first_name}} {{ donor.last_name }}</h5><br>
-                     <p class="card-text">gender: {{ donor.gender | capfirst }}</p>
-                     <p class="card-text">age: {{ donor.age }}</p>						 
+                     <p class="card-text">Gender: {{ donor.gender | capfirst }}</p>
+                     <p class="card-text">Age: {{ donor.age }}</p>						 
                      <p class="card-text">Blood Group:
                         {% if donor.blood_group == 'bp' %}
                            B+
@@ -146,14 +146,13 @@
                            AB-
                         {% endif %}
                      </p>
-                     <p class="card-text">Address: {{ donor.addr_line }}, {{ donor.city }}</p>
                      <p class="card-text">District: {{ donor.district }} -  {{ donor.pincode }}</p>
                      <p class="card-text">Medical History: {{ donor.medical_history }}</p>
                      <p class="card-text">Social History: {{ donor.social_history }}</p>
                   </div>
                   <div class="modal-footer">
                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                     <button type="button" class="btn btn-primary">Request</button>
+                     <a href={% url 'recipientsendrequest' donor_id=donor.user_id %} type="button" class="btn btn-primary">Request</a>
                   </div>
                </div>
             </div>
