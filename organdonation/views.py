@@ -15,7 +15,7 @@ def index(request):
     if user.is_authenticated and user.is_donor:
         return redirect('donorhome')
     elif user.is_authenticated and user.is_recipient:
-        return redirect('recipienthome')
+        return redirect('recipientprofile')
     donor_count = Donor.objects.all().count()
     recipient_count = Recipient.objects.all().count()
     context = {
