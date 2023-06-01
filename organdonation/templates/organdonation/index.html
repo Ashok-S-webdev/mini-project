@@ -11,34 +11,34 @@
 
 {% block body %}		
 	
-		<div class="container text-center quote">Life is a gift, Pass it on</div>
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6 text-center content">
-					<p>
-						Mostly due to unawareness and prejudices, there is a huge shortage of
-						organs that are need for transplants. Many people who need transplants
-						of organs and tissues cannot get them because of a shortage of
-						donations. Every month, more than 2,000 new names are added to the
-						national waiting list for organ transplants. About 16 or 17 people die
-						every day while waiting for a transplant of a vital organ such as a
-						kidney, heart or liver.
-					</p>
-					
-				</div>
-				<div class="row">
-					<div class="col-md-6 text-center pledging">
-						<p>There are {{ recipient_count }} peoples in need of organ right now </p>
-						<p>Already strong {{ donor_count }} peoples have registred themselves to be an Organ Donor in our system</p>
-						<p>
-							So today is a good day to save lives <br />
-							Become an Organ Donor
-						</p>
-						<button class="btn btn-dark reg-link">
-							<a href="{% url 'dregister' %}">Pledge yourself as a Donor</a>
-						</button>
-					</div>
-				</div>
+<div class="container text-center quote">Life is a gift, Pass it on</div>
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 text-center content">
+			<p>
+				Mostly due to unawareness and prejudices, there is a huge shortage of
+				organs that are need for transplants. Many people who need transplants
+				of organs and tissues cannot get them because of a shortage of
+				donations. Every month, more than 2,000 new names are added to the
+				national waiting list for organ transplants. About 16 or 17 people die
+				every day while waiting for a transplant of a vital organ such as a
+				kidney, heart or liver.
+			</p>
+			
+		</div>
+		<div class="row">
+			<div class="col-md-6 text-center pledging">
+				<p>There are "{{ recipient_count }}" peoples in need of organ right now </p>
+				<p>Already "{{ donor_count }}" peoples have registred themselves to be an Organ Donor in our system</p>
+				<p>
+					So today is a good day to save lives <br />
+					Become an Organ Donor
+				</p>
+				<button class="btn btn-dark reg-link">
+					<a href="{% url 'dregister' %}">Pledge yourself as a Donor</a>
+				</button>
 			</div>
 		</div>
+	</div>
+</div>
 {% endblock body %}

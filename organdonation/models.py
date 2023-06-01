@@ -37,7 +37,6 @@ class Donor(models.Model):
    organs = models.ManyToManyField(Organ)
    medical_history = models.TextField(max_length=200)
    social_history = models.TextField(max_length=200)
-   is_pending = models.BooleanField(default=False)
 
 
    def __str__(self):
